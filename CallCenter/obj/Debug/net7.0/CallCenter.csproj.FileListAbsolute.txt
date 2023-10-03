@@ -12,3 +12,5 @@
 /Users/albrechtohsiek/University/SEN381/SEN381Code/CallCenter/obj/Debug/net7.0/CallCenter.pdb
 /Users/albrechtohsiek/University/SEN381/SEN381Code/CallCenter/obj/Debug/net7.0/CallCenter.genruntimeconfig.cache
 /Users/albrechtohsiek/University/SEN381/SEN381Code/CallCenter/obj/Debug/net7.0/ref/CallCenter.dll
+/Users/albrechtohsiek/University/SEN381/SEN381Code/CallCenter/obj/Debug/net7.0/CallCenter.csproj.AssemblyReference.cache
+/Users/albrechtohsiek/University/SEN381/SEN381Code/CallCenter/obj/Debug/net7.0/CallCenter.MvcApplicationPartsAssemblyInfo.cache
