@@ -1,3 +1,4 @@
+using CallCenter.Models;
 using CallCenter.Types;
 using Microsoft.AspNetCore.Mvc;
 
@@ -5,7 +6,8 @@ namespace CallCenter.Handlers
 {
     public class ClientMaintananceHandler
     {
-        List<ContractType> contractTypes;
+        List<Client> clients;
+        Client selectedClient;
 
         public ClientMaintananceHandler()
         {

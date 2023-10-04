@@ -1,10 +1,16 @@
+using CallCenter.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CallCenter.Handlers{
     public class ServiceDepartmentHandler{
+        
+        List<WorkRequest> serviceRequests;
+        List<Technician> technicians;
+        WorkRequest selectedServiceRequest;
+
         public ServiceDepartmentHandler()
         {
-
+            this.serviceRequests = new List<WorkRequest>();
         }
 
         public static IActionResult GetWorkRequest()

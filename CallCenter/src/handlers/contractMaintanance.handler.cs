@@ -1,7 +1,12 @@
+using CallCenter.Types;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CallCenter.Handlers{
     public class ContractMaintananceHandler{
+        
+        List<ContractType> contractTypes;
+        ContractType selectedContractType;
+        
         public ContractMaintananceHandler()
         {
 
