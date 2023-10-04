@@ -6,6 +6,6 @@ namespace CallCenter.Types
     {
         ObjectId employeeId {get; set;}
         string employeeName {get; set;}
-        Enum emplyeeDepartment {get; set;}
+        Department emplyeeDepartment {get; set;}
     }
 }

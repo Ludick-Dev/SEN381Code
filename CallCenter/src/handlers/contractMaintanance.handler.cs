@@ -9,6 +9,11 @@ namespace CallCenter.Handlers{
 
         public static IActionResult DefineService()
         {
+            // Auth
+            // checkPermision
+            // validateQuery
+            // call service
+            
             throw new NotImplementedException();
         }
 

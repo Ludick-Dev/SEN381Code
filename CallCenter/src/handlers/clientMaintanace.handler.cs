@@ -1,9 +1,12 @@
+using CallCenter.Types;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CallCenter.Handlers
 {
     public class ClientMaintananceHandler
     {
+        List<ContractType> contractTypes;
+
         public ClientMaintananceHandler()
         {
 
@@ -11,6 +14,11 @@ namespace CallCenter.Handlers
 
         public static IActionResult AddClient()
         {
+            // Auth
+            // checkPermision
+            // validateQuery
+            // call service
+
             throw new NotImplementedException();
         }
         public static IActionResult AddBusinessClient()

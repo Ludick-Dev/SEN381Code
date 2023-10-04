@@ -7,6 +7,6 @@ namespace CallCenter.Models
     {
         public ObjectId employeeId { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public string employeeName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public Enum emplyeeDepartment { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Department emplyeeDepartment { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 }
