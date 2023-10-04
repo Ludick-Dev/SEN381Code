@@ -4,23 +4,24 @@ namespace CallCenter.Handlers
 {
     public class ClientMaintananceHandler
     {
-        public ClientMaintananceHandler{
+        public ClientMaintananceHandler()
+        {
 
         }
 
-        public IActionResult AddClient()
+        public static IActionResult AddClient()
         {
             throw new NotImplementedException();
         }
-        public IActionResult AddBusinessClient()
+        public static IActionResult AddBusinessClient()
         {
             throw new NotImplementedException();
         }
-        public IActionResult AddServiceAgreement()
+        public static IActionResult AddServiceAgreement()
         {
             throw new NotImplementedException();
         }
-        public IActionResult ViewContractHistory()
+        public static IActionResult ViewContractHistory()
         {
             throw new NotImplementedException();
         }

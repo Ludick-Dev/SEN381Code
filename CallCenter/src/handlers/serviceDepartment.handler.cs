@@ -2,36 +2,37 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CallCenter.Handlers{
     public class ServiceDepartmentHandler{
-        public ServiceDepartmentHandler{
+        public ServiceDepartmentHandler()
+        {
 
         }
 
-        public IActionResult GetWorkRequest()
+        public static IActionResult GetWorkRequest()
         {
             throw new NotImplementedException();
         }
 
-        public IActionResult TrackRequest()
+        public static IActionResult TrackRequest()
         {
             throw new NotImplementedException();
         }
 
-        public IActionResult AddRequests()
+        public static IActionResult AddRequests()
         {
             throw new NotImplementedException();
         }
 
-        public IActionResult EscalateRequests()
+        public static IActionResult EscalateRequests()
         {
             throw new NotImplementedException();
         }
 
-        public IActionResult ReassignRequests()
+        public static IActionResult ReassignRequests()
         {
             throw new NotImplementedException();
         }
 
-        public IActionResult DeleteRequest()
+        public static IActionResult DeleteRequest()
         {
             throw new NotImplementedException();
         }

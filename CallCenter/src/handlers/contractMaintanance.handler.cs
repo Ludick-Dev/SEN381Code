@@ -2,31 +2,32 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CallCenter.Handlers{
     public class ContractMaintananceHandler{
-        public ContractMaintananceHandler{
+        public ContractMaintananceHandler()
+        {
 
         }
 
-        public IActionResult DefineService()
+        public static IActionResult DefineService()
         {
             throw new NotImplementedException();
         }
 
-        public IActionResult DefineServiceLevels()
+        public static IActionResult DefineServiceLevels()
         {
             throw new NotImplementedException();
         }
 
-        public IActionResult DefineContractType()
+        public static IActionResult DefineContractType()
         {
             throw new NotImplementedException();
         }
 
-        public IActionResult GetContractAvailable()
+        public static IActionResult GetContractAvailable()
         {
             throw new NotImplementedException();
         }
 
-        public IActionResult AddCallToRequest()
+        public static IActionResult AddCallToRequest()
         {
             throw new NotImplementedException();
         }

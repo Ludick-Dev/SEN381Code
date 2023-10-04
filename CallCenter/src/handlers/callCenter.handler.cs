@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Mvc;
+
 namespace CallCenter.Handlers
 {
     public class CallCenterHandler
@@ -7,37 +9,37 @@ namespace CallCenter.Handlers
 
         }
 
-        public IActionResult AnswerCall()
+        public static IActionResult AnswerCall()
         {
             throw new NotImplementedException();
         }
 
-        public IActionResult ViewClientDetails()
+        public static IActionResult ViewClientDetails()
         {
             throw new NotImplementedException();
         }
 
-        public IActionResult ViewAgreements()
+        public static IActionResult ViewAgreements()
         {
             throw new NotImplementedException();
         }
 
-        public IActionResult ViewClientHistory()
+        public static IActionResult ViewClientHistory()
         {
             throw new NotImplementedException();
         }
 
-        public IActionResult LogRequest()
+        public static IActionResult LogRequest()
         {
             throw new NotImplementedException();
         }
 
-        public IActionResult SubmitRequest()
+        public static IActionResult SubmitRequest()
         {
             throw new NotImplementedException();
         }
 
-        public IActionResult AddCallToRequest()
+        public static IActionResult AddCallToRequest()
         {
             throw new NotImplementedException();
         }
