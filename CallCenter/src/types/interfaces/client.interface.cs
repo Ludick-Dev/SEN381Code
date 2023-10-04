@@ -8,7 +8,7 @@ namespace CallCenter.Types
         ObjectId clientId {get; set;}
         string clientName {get; set;}
         string phoneNumber {get; set;}
-        ClientTypes cientType {get; set;}
+        ClientTypes clientType {get; set;}
         List<Contract> contracts {get; set;}
     }
 }

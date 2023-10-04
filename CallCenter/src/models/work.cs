@@ -12,5 +12,12 @@ namespace CallCenter.Models
         {
 
         }
+
+        public Work(ObjectId workId, ObjectId technicianId, DateTime workDate)
+        {
+            this.workId = workId;
+            this.technicianId = technicianId;
+            this.workDate = workDate;
+        }
     }
 }
