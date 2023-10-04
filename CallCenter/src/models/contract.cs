@@ -11,5 +11,10 @@ namespace CallCenter.Models
         public string contractDetails { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public int serviceLevel { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public Enum contractStatus { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    
+        public Contract()
+        {
+            
+        }
     }
 }

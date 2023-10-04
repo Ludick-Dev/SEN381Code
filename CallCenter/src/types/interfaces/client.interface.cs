@@ -1,4 +1,4 @@
-using System.Diagnostics.Contracts;
+using CallCenter.Models;
 using MongoDB.Bson;
 
 namespace CallCenter.Types
@@ -9,6 +9,6 @@ namespace CallCenter.Types
         string clientName {get; set;}
         string phoneNumber {get; set;}
         Enum cientType {get; set;}
-        List<Contract>
+        List<Contract> contracts {get; set;}
     }
 }

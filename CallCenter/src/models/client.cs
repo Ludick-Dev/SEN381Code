@@ -9,5 +9,6 @@ namespace CallCenter.Models
         public string clientName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public string phoneNumber { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public Enum cientType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public List<Contract> contracts { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 }
