@@ -2,7 +2,7 @@
 
 namespace CallCenter.Models
 {
-	public class login
+	public class Login
 	{
         private int EmployeeID;
         private string username;
@@ -19,4 +19,4 @@ namespace CallCenter.Models
 
     }
 }
-}
+

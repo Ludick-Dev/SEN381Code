@@ -4,7 +4,8 @@ namespace CallCenter.Config
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddLogging();
+            services.AddControllersWithViews();
 
             // Add your other services here
 
@@ -13,9 +14,18 @@ namespace CallCenter.Config
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment environment)
         {
-            
-        }
+            if (environment.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
 
+            app.UseRouting();
+            app.UseEndpoints(endpoints => {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Login}/{action=Login}/{id?}");
+            });
+        }
     }
 }
 

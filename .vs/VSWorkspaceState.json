@@ -3,11 +3,14 @@
     "",
     "\\CallCenter",
     "\\CallCenter\\src",
+    "\\CallCenter\\src\\dataAccess",
+    "\\CallCenter\\src\\middleware",
     "\\CallCenter\\src\\models",
     "\\CallCenter\\src\\services",
     "\\CallCenter\\src\\types",
-    "\\CallCenter\\src\\types\\interfaces"
+    "\\CallCenter\\src\\types\\enums",
+    "\\CallCenter\\src\\Views\\Admin"
   ],
-  "SelectedNode": "\\CallCenter\\src\\models\\employee.cs",
+  "SelectedNode": "\\CallCenter\\CallCenter.csproj",
   "PreviewInSolutionExplorer": false
 }
