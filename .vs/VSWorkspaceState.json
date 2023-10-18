@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\CallCenter",
+    "\\CallCenter\\src",
+    "\\CallCenter\\src\\models",
+    "\\CallCenter\\src\\services",
+    "\\CallCenter\\src\\types",
+    "\\CallCenter\\src\\types\\interfaces"
+  ],
+  "SelectedNode": "\\CallCenter\\src\\models\\employee.cs",
+  "PreviewInSolutionExplorer": false
+}
