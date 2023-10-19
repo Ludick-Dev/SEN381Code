@@ -1,0 +1,10 @@
+-Note that you might have to manually set up a connection to the database inside the Server Explorer tab. 
+
+-The .mdf database file is located in "SEN381Code\CallCenter\Database".
+
+-Ensure that your connection string inside the "SEN381Code\CallCenter\Database\DBconnect.cs" class is correct.
+
+
+
+
+I don't know how to make the database connection more user friendly, sorry. Please help 

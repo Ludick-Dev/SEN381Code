@@ -1,17 +1,18 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using CallCenter.Database;
+using Microsoft.Data.SqlClient;
 
 namespace CallCenter.DataAccess
 {
     public class LoginDataAccess
     {
-        string conString = "Data Source=.\\SQLEXPRESS;TrustServerCertificate=true;AttachDbFilename=\"C:\\Call Centre App Main\\SEN381Code\\CallCenter\\Database\\SEN381_DATABASE.mdf\";Integrated Security=True;Connect Timeout=30";
         public (int ID, string Username, string Password) GetUserCredentials(string inputUsername)
         {
             int dbID = 0;
             string dbUsername = "";
             string dbPassword = "";
 
-            SqlConnection con = new SqlConnection(conString);
+            DBconnect conString = new DBconnect();
+            SqlConnection con = new SqlConnection(conString.connectionString);
             string query = "SELECT employeeId, username, password FROM EmployeeLogin WHERE username = @Username";
             SqlCommand cmd = new SqlCommand(query, con);
             cmd.Parameters.AddWithValue("@Username", inputUsername);

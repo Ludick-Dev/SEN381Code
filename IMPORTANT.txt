@@ -1,3 +1,0 @@
-Note that you might have to manually set up a connection to the database inside the Server Explorer tab. 
-
-Also, ensure that your connection string inside the appsettings.json file is correct.
