@@ -126,3 +126,7 @@ C:\Call Centre App Main\SEN381Code\CallCenter\obj\Debug\net7.0\refint\CallCenter
 C:\Call Centre App Main\SEN381Code\CallCenter\obj\Debug\net7.0\CallCenter.pdb
 C:\Call Centre App Main\SEN381Code\CallCenter\obj\Debug\net7.0\CallCenter.genruntimeconfig.cache
 C:\Call Centre App Main\SEN381Code\CallCenter\obj\Debug\net7.0\ref\CallCenter.dll
+C:\Call Centre App Main\SEN381Code\CallCenter\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Call Centre App Main\SEN381Code\CallCenter\bin\Debug\net7.0\SendGrid.dll
+C:\Call Centre App Main\SEN381Code\CallCenter\bin\Debug\net7.0\StarkbankEcdsa.dll
+C:\Call Centre App Main\SEN381Code\CallCenter\bin\Debug\net7.0\Twilio.dll

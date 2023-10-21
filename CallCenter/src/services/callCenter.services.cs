@@ -1,12 +1,15 @@
 using CallCenter.Models;
 using MongoDB.Bson;
+using CallCenter.DataAccess;
+using CallCenter.src.dataAccess;
 
 namespace CallCenter.Services{
-    public class CallCenterService{
-        public CallCenterService(){
+    public class CallCenterService
+    {
+        public CallCenterService()
+        {
 
         }
-
         public static void AnswerCall()
         {
             throw new NotImplementedException();

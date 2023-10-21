@@ -1,12 +1,14 @@
 using CallCenter.Models;
-using MongoDB.Bson;
 
 namespace CallCenter.Types
 {
     interface IWorkRequest
     {
-        List<Work> workId {get; set;}
-        RequestTypes requestTypes {get; set;}
-        string requestDetails {get; set;}
+        int requestID { get; set; }
+        int clientID { get; set; }
+        int serviceTypeID { get; set; }
+        int priorityID { get; set; }
+        string status { get; set; }
+
     }
 }

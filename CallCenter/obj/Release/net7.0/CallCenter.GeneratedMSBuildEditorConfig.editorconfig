@@ -16,14 +16,18 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Call Centre App Main\SEN381Code\CallCenter
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Call Centre App Main/SEN381Code/CallCenter/src/Views/Admin/Admin.cshtml]
-build_metadata.AdditionalFiles.TargetPath = c3JjXFZpZXdzXEFkbWluXEFkbWluLmNzaHRtbA==
+[C:/Call Centre App Main/SEN381Code/CallCenter/Views/Admin/Admin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRtaW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Call Centre App Main/SEN381Code/CallCenter/src/Views/Login/Login.cshtml]
-build_metadata.AdditionalFiles.TargetPath = c3JjXFZpZXdzXExvZ2luXExvZ2luLmNzaHRtbA==
+[C:/Call Centre App Main/SEN381Code/CallCenter/Views/CallCenter/CallCenter.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FsbENlbnRlclxDYWxsQ2VudGVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Call Centre App Main/SEN381Code/CallCenter/src/Views/Shared/_Layout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = c3JjXFZpZXdzXFNoYXJlZFxfTGF5b3V0LmNzaHRtbA==
+[C:/Call Centre App Main/SEN381Code/CallCenter/Views/Login/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Call Centre App Main/SEN381Code/CallCenter/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

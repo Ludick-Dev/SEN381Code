@@ -1,5 +1,4 @@
 ﻿using CallCenter.DataAccess;
-using CallCenter.Models;
 
 namespace CallCenter.Services
 {
@@ -8,7 +7,6 @@ namespace CallCenter.Services
         LoginDataAccess loginDA = new LoginDataAccess();
         public string AuthenticateUser(string inputUsername, string inputPassword)
         {
-
             var credentials = loginDA.GetUserCredentials(inputUsername);
             int id = credentials.ID;
             string username = credentials.Username;

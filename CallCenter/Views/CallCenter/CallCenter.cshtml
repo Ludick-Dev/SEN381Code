@@ -1,0 +1,122 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+    <button type="button" onclick="openModal()">Generate Work Request (Express)</button>
+
+    <!-- modal form for generating express work requests -->
+    <div id="modalForm" style="display:none;">
+        <h3>Express Work Request</h3>
+
+        <label>Client Name:</label>
+        <input type="text" name="clientName" />
+
+        <label>Client Phone Number:</label>
+        <input type="text" name="clientPhone" />
+
+        <label>Client Address:</label>
+        <input type="text" name="clientAddress" />
+
+        <label>Problem Description:</label>
+        <input type="text" name="problemDescription" />
+
+        <label>Select Technician:</label>
+        <select name="technician" id="technicianDropdown">
+        </select>
+
+        <div>
+            <input type="checkbox" id="notifyEmail" name="notifyEmail" value="Email">
+            <label for="notifyEmail">Notify Technician Via Email</label>
+
+            <input type="checkbox" id="notifySMS" name="notifySMS" value="SMS">
+            <label for="notifySMS">Notify Technician Via SMS</label>
+
+            <input type="checkbox" id="notifyWhatsapp" name="notifyWhatsapp" value="Whatsapp">
+            <label for="notifyWhatsapp">Notify Technician Via Whatsapp</label>
+        </div>
+
+        <button type="button" onclick="submitForm()">Submit Express Request</button>
+        <button type="button" onclick="closeModal()">Close</button>
+    </div>
+
+    <!-- overlay for the modal form -->
+    <div id="overlay" style="display:none;"></div>
+
+    <script>
+        //open the modal form
+        function openModal() {
+            document.getElementById('modalForm').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+        //close the modal form
+        function closeModal() {
+            document.getElementById('modalForm').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+        //submit the form data and handle the response
+        function submitForm() {
+            //collect form data
+            var formData = {
+                clientName: document.querySelector("input[name='clientName']").value,
+                clientPhone: document.querySelector("input[name='clientPhone']").value,
+                clientAddress: document.querySelector("input[name='clientAddress']").value,
+                problemDescription: document.querySelector("input[name='problemDescription']").value,
+                technicianId: document.querySelector("select[name='technician']").value,
+                notifyEmail: document.querySelector("input[name='notifyEmail']").checked,
+                notifySMS: document.querySelector("input[name='notifySMS']").checked,
+                notifyWhatsapp: document.querySelector("input[name='notifyWhatsapp']").checked
+            };
+            //send form data to the server
+            fetch('/CallCenter/NotifyTechnician', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        return response.text().then(errorText => { throw new Error(errorText); });
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (typeof data === 'object') {
+                        alert(JSON.stringify(data));
+                    }
+                    else {
+                        alert(data);
+                    }
+                    closeModal();
+                })
+                .catch((error) => {
+                    //temporary error handling
+                    console.error('Error:', error);
+                    alert(error.message);
+                });
+        }
+        //add technicians to dropdown menu
+        window.onload = function () {
+            fetch('/CallCenter/GetTechnicians')
+                .then(response => response.json())
+                .then(data => {
+                    var dropdown = document.getElementById('technicianDropdown');
+                    data.forEach(tech => {
+                        var option = document.createElement('option');
+                        option.value = tech.split(':')[0].trim();
+                        option.text = tech;
+                        dropdown.add(option);
+                    });
+                });
+        };
+    </script>
+</body>
+</html>

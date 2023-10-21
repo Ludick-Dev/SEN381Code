@@ -1,23 +1,26 @@
 using CallCenter.Types;
-using MongoDB.Bson;
 
 namespace CallCenter.Models
 {
     public class WorkRequest : IWorkRequest
     {
-        public List<Work> workId { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public RequestTypes requestTypes { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string requestDetails { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    
+        public int requestID { get; set; }
+        public int clientID { get; set; }
+        public int serviceTypeID { get; set; }
+        public int priorityID { get; set; }
+        public string status { get; set; }
         public WorkRequest()
         {
+
         }
 
-        public WorkRequest(List<Work> workId, RequestTypes requestTypes, string requestDetails)
+        public WorkRequest(int requestID, int clientID, int serviceTypeID, int priorityID, string status)
         {
-            this.workId = workId;
-            this.requestTypes = requestTypes;
-            this.requestDetails = requestDetails;
+            this.requestID = requestID;
+            this.clientID = clientID;
+            this.serviceTypeID = serviceTypeID;
+            this.priorityID = priorityID;
+            this.status = status;
         }
     }
 }
