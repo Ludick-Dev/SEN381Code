@@ -8,9 +8,8 @@
     "\\CallCenter\\src\\models",
     "\\CallCenter\\src\\services",
     "\\CallCenter\\src\\types",
-    "\\CallCenter\\src\\types\\enums",
-    "\\CallCenter\\src\\Views\\Admin"
+    "\\CallCenter\\src\\types\\enums"
   ],
-  "SelectedNode": "\\CallCenter\\CallCenter.csproj",
+  "SelectedNode": "\\CallCenter\\src\\middleware\\auth.middleware.cs",
   "PreviewInSolutionExplorer": false
 }

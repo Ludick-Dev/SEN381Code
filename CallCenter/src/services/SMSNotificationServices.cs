@@ -9,7 +9,7 @@ namespace CallCenter.src.services
     public class SMSNotificationServices : INotificationStrategy
     {
         private readonly string accountSid = "ACc22a1cc2695739e39421d1ede151fcab"; 
-        private readonly string authToken = "373279c2656dba5675335f744d52ee64";  
+        private readonly string authToken = "paste it here";  
         private readonly string twilioPhoneNumber = "+17083848580";  
         public void Notify(string message, string recipientPhoneNumber)
         {

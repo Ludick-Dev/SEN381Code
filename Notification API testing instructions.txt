@@ -9,3 +9,9 @@
 -to do that, run the app and then go to https://localhost:7206/CallCenter/CallCenter and fill in the form
 
 - i cant integrate an email api because sendgrid wont let me make an account 
+
+-I cant hardcode api credentials because twilio picks up on it and revokes the auth token once i commit the code to the public github repo. I dont know how to fix this. so for now you have to manually add the credentials to the WhatsappNotificationServices.cs and SMSNotificationServices.cs files.
+
+here are the credentials:
+account Sid: ACc22a1cc2695739e39421d1ede151fcab
+auth token: 221f39365bf3f2b7e33e275459bb56cd
