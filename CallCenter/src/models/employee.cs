@@ -1,23 +1,32 @@
 using CallCenter.Types;
-using MongoDB.Bson;
 
 namespace CallCenter.Models
 {
     public class Employee : IEmployee
     {
-        public ObjectId employeeId { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string employeeName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public Department emplyeeDepartment { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    
+       public int employeeId { get; set; }
+       public  string employeeName { get; set; }
+        public string department { get; set; }
+       public  bool availability { get; set; }
+        public string serviceArea { get; set; }
+        public string certificationLevel { get; set; }
+        public string emailAddress { get; set; }
+        public string phoneNumber { get; set; }
+
         public Employee()
         {
-        }
 
-        public Employee(ObjectId employeeId, string employeeName, Department employeeDepartment)
+        }
+        public Employee(int employeeID, string employeeName, string department, bool availability, string serviceArea, string certificationLevel, string emailAddress, string phoneNumber)
         {
-            this.employeeId = employeeId;
+            this.employeeId = employeeID;
             this.employeeName = employeeName;
-            this.emplyeeDepartment = emplyeeDepartment;
+            this.department = department;
+            this.availability = availability;
+            this.serviceArea = serviceArea;
+            this.certificationLevel = certificationLevel;
+            this.emailAddress = emailAddress;
+            this.phoneNumber = phoneNumber;
         }
     }
 }

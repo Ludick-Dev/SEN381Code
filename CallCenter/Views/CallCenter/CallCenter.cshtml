@@ -90,9 +90,11 @@
                 })
                 .then(data => {
                     if (typeof data === 'object') {
+                        //temporary error handling
                         alert(JSON.stringify(data));
                     }
                     else {
+                        //temporary error handling
                         alert(data);
                     }
                     closeModal();

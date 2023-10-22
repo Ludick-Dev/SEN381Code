@@ -16,7 +16,7 @@ namespace CallCenter.Controllers
         {
             return View("CallCenter");
         }
-        //display technicians in dropdown menu
+        //display technicians in dropdown menu of express work request form
         [HttpGet("GetTechnicians")]
         public IActionResult GetTechnicians()
         {
@@ -25,7 +25,7 @@ namespace CallCenter.Controllers
             return Json(technicians);
         }
 
-        //notifiy selected technician of new "express" work request
+        //notifiy selected technician of new "express" work request on express work request form
         [HttpPost("NotifyTechnician")]
         public IActionResult NotifyTechnician([FromBody] NotifyTechnicianRequest request)
         {

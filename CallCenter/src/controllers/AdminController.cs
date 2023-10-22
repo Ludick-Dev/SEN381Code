@@ -6,7 +6,7 @@ namespace CallCenter.src.controllers
     {
         public IActionResult Admin()
         {
-            ViewBag.Message = "this is supposed to be the admin dashboard";
+            ViewBag.Message = "this is supposed to be the admin dashboard to view employees and logs";
             return View();
         }
     }

@@ -1,11 +1,15 @@
-using MongoDB.Bson;
 
 namespace CallCenter.Types
 {
     interface IEmployee
     {
-        ObjectId employeeId {get; set;}
-        string employeeName {get; set;}
-        Department emplyeeDepartment {get; set;}
+        int employeeId { get; set; }
+        string employeeName { get; set; }
+        string department { get; set; }
+        bool availability { get; set; }
+        string serviceArea { get; set; }
+        string certificationLevel { get; set; }
+        string emailAddress { get; set; }
+        string phoneNumber { get; set; }
     }
 }

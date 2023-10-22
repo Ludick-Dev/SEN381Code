@@ -1,8 +1,8 @@
--To test the technician notification functions, you have to add yourself to the database as a technician with your number in the correct format (for example +27123456789). 
+-To test the technician notification functions, you have to add yourself to the database as an employee and a technician with your number in the correct format (for example +27123456789). 
 
 -Then I have to verify your number on my twilio account (because thats what you have to do if you have a free trial account)
 
--Dont test the sms function, because that costs money and my twilio account only has $14.2214 on it (an sms costs about $1)
+-Dont test the sms function, because that costs money and my twilio account only has $14 on it (an sms costs about $1)
 
 -You can test the whatsapp function all you want though 
 
