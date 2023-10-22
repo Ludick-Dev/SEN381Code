@@ -1,17 +1,17 @@
 -To test the technician notification functions, you have to add yourself to the database as an employee and a technician with your number in the correct format (for example +27123456789). 
 
--Then I have to verify your number on my twilio account (because thats what you have to do if you have a free trial account)
+-For SMSes I then have to verify your number on my twilio account (because thats what you have to do if you have a free trial account)
 
--Dont test the sms function, because that costs money and my twilio account only has $14 on it (an sms costs about $1)
+-I recommend that you don't test the sms function though, because that costs money and my twilio account only has $14 on it (an sms costs about $1)
 
--You can test the whatsapp function all you want though 
+-However, you can test the whatsapp function all you want
 
--to do that, run the app and then go to https://localhost:7206/CallCenter/CallCenter and fill in the form
+-To do that, go to "https://api.whatsapp.com/send/?phone=%2B14155238886&text=join+guide-save&type=phone_number&app_absent=0" and open whatsapp and reply with the code "join guide-save". Then run the call centre app, go to https://localhost:7206/CallCenter/CallCenter and fill in the form
 
-- i cant integrate an email api because sendgrid wont let me make an account 
+- i can't integrate an email api because sendgrid wont let me make an account 
 
 -I cant hardcode api credentials because twilio picks up on it and revokes the auth token once i commit the code to the public github repo. I dont know how to fix this. so for now you have to manually add the credentials to the WhatsappNotificationServices.cs and SMSNotificationServices.cs files.
 
 here are the credentials:
 account Sid: ACc22a1cc2695739e39421d1ede151fcab
-auth token: 221f39365bf3f2b7e33e275459bb56cd
+@uth t0k3n: 167be_80820863820b0c64_39f3cbb1389 (remove the underscores, I just added those so that twilio wont pick up on it and revoke it again)
