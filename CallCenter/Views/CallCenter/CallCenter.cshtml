@@ -85,25 +85,11 @@
                 .then(response => {
                     if (!response.ok) {
                         return response.text().then(errorText => { throw new Error(errorText); });
+                        closeModal();
                     }
+                    alert("Technician notified successfully.")
                     return response.json();
                 })
-                .then(data => {
-                    if (typeof data === 'object') {
-                        //temporary error handling
-                        alert(JSON.stringify(data));
-                    }
-                    else {
-                        //temporary error handling
-                        alert(data);
-                    }
-                    closeModal();
-                })
-                .catch((error) => {
-                    //temporary error handling
-                    console.error('Error:', error);
-                    alert(error.message);
-                });
         }
         //add technicians to dropdown menu
         window.onload = function () {

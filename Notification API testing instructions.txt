@@ -1,17 +1,21 @@
--To test the technician notification functions, you have to add yourself to the database as an employee and a technician with your number in the correct format (for example +27123456789). 
+-To test the technician notification functions, you have to add yourself to the database as an employee and a technician with your email and number in the correct format (for example +27123456789). 
 
 -For SMSes I then have to verify your number on my twilio account (because thats what you have to do if you have a free trial account)
 
 -I recommend that you don't test the sms function though, because that costs money and my twilio account only has $14 on it (an sms costs about $1)
 
--However, you can test the whatsapp function all you want
+-However, you can test the whatsapp and email function all you want
 
--To do that, go to "https://api.whatsapp.com/send/?phone=%2B14155238886&text=join+guide-save&type=phone_number&app_absent=0" and open whatsapp and reply with the code "join guide-save". Then run the call centre app, go to https://localhost:7206/CallCenter/CallCenter and fill in the form
+-For whatsapp: go to "https://api.whatsapp.com/send/?phone=%2B14155238886&text=join+guide-save&type=phone_number&app_absent=0" and open whatsapp and reply with the code "join guide-save". Then run the call centre app, go to https://localhost:7206/CallCenter/CallCenter and fill in the form
 
-- i can't integrate an email api because sendgrid wont let me make an account 
+-For email: no verification needed. Just go to https://localhost:7206/CallCenter/CallCenter and fill in the form
 
--I cant hardcode api credentials because twilio picks up on it and revokes the auth token once i commit the code to the public github repo. I dont know how to fix this. so for now you have to manually add the credentials to the WhatsappNotificationServices.cs and SMSNotificationServices.cs files.
 
-here are the credentials:
+-I cant hardcode api credentials because twilio and sendgrid picks up on it and revokes the auth token once i commit the code to the public github repo. I dont know how to fix this. so for now you have to manually add the credentials to the WhatsappNotificationServices.cs and SMSNotificationServices.cs and EmailNotificationServices.cs files.
+
+-here are the credentials for SMS and Whatsapp:
 account Sid: ACc22a1cc2695739e39421d1ede151fcab
 @uth t0k3n: 167be_80820863820b0c64_39f3cbb1389 (remove the underscores, I just added those so that twilio wont pick up on it and revoke it again)
+
+-here are the credentials for Email:
+API KEY for SENDGRID: SG.ZEPfT-X5QRGA4@A-fgLlGUg.6QwWTVbyC-yXFfu3N-7TD3_Fh@gOtZn1RrpNepZm8Suk (remove the @ signs, I just added those so that sendgrid wont pick up on it and revoke it)

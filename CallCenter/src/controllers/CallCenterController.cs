@@ -41,13 +41,13 @@ namespace CallCenter.Controllers
             {
                 if (request.NotifyEmail)
                 {
-                    //keep getting banned from sendgrid lol
+                    var emailService = new EmailNotificationServices();
+                    emailService.Notify(message, contactDetails.email);
                 }
                 if (request.NotifySMS)
                 {
                     var smsService = new SMSNotificationServices();
                     smsService.Notify(message, contactDetails.phoneNumber);
-                    ViewBag.numberalert = contactDetails.phoneNumber;
                 }
                 if (request.NotifyWhatsapp)
                 {
