@@ -1,3 +1,3 @@
 ﻿<Project>
-  <Import Project="..\build\CallCenter.props" />
+  <Import Project="../build/CallCenter.props" />
 </Project>

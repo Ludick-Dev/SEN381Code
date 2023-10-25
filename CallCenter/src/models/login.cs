@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace CallCenter.Models
+﻿namespace CallCenter.Models
 {
-	public class Login
+    public class Login
 	{
         private int EmployeeID;
         private string username;

@@ -1,5 +1,4 @@
 using CallCenter.Models;
-using CallCenter.Types;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CallCenter.Handlers

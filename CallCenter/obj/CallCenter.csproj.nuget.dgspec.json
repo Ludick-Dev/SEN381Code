@@ -1,27 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Call Centre App Main\\SEN381Code\\CallCenter\\CallCenter.csproj": {}
+    "/Users/albrechtohsiek/University/SEN381/SEN381Code/CallCenter/CallCenter.csproj": {}
   },
   "projects": {
-    "C:\\Call Centre App Main\\SEN381Code\\CallCenter\\CallCenter.csproj": {
+    "/Users/albrechtohsiek/University/SEN381/SEN381Code/CallCenter/CallCenter.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Call Centre App Main\\SEN381Code\\CallCenter\\CallCenter.csproj",
+        "projectUniqueName": "/Users/albrechtohsiek/University/SEN381/SEN381Code/CallCenter/CallCenter.csproj",
         "projectName": "CallCenter",
-        "projectPath": "C:\\Call Centre App Main\\SEN381Code\\CallCenter\\CallCenter.csproj",
-        "packagesPath": "C:\\Users\\suned\\.nuget\\packages\\",
-        "outputPath": "C:\\Call Centre App Main\\SEN381Code\\CallCenter\\obj\\",
+        "projectPath": "/Users/albrechtohsiek/University/SEN381/SEN381Code/CallCenter/CallCenter.csproj",
+        "packagesPath": "/Users/albrechtohsiek/.nuget/packages/",
+        "outputPath": "/Users/albrechtohsiek/University/SEN381/SEN381Code/CallCenter/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\suned\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/albrechtohsiek/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "/usr/local/share/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -84,7 +83,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.400/RuntimeIdentifierGraph.json"
         }
       }
     }

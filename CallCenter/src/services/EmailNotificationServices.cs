@@ -1,9 +1,8 @@
-﻿using CallCenter.src.types.interfaces;
+﻿using CallCenter.Types;
 using SendGrid;
 using SendGrid.Helpers.Mail;
-using System.Threading.Tasks;
 
-namespace CallCenter.src.services
+namespace CallCenter.Services
 {
     //implements email notification services using SendGrid API
     public class EmailNotificationServices : INotificationStrategy

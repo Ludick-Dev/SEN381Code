@@ -1,5 +1,3 @@
-using CallCenter.Models;
-
 namespace CallCenter.Types
 {
     interface IWorkRequest

@@ -1,4 +1,3 @@
-using CallCenter.Models;
 using MongoDB.Bson;
 
 namespace CallCenter.Types

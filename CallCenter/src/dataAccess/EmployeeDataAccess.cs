@@ -1,10 +1,9 @@
-﻿using Amazon.Auth.AccessControlPolicy.ActionIdentifiers;
-using CallCenter.Database;
+﻿using CallCenter.Database;
 using CallCenter.Models;
 using Microsoft.Data.SqlClient;
 using System.Data;
 
-namespace CallCenter.src.dataAccess
+namespace CallCenter.DataAccess
 {
     public class EmployeeDataAccess
     {

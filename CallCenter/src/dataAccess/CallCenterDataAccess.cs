@@ -1,11 +1,8 @@
 ﻿using CallCenter.Database;
-using CallCenter.Models;
 using Microsoft.Data.SqlClient;
-using System.Collections.Generic;
 using System.Data;
-using System.Text;
 
-namespace CallCenter.src.dataAccess
+namespace CallCenter.DataAccess
 {
     public class CallCenterDataAccess
     {

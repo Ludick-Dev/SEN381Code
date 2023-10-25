@@ -1,10 +1,9 @@
-﻿using CallCenter.Models;
-using CallCenter.Database;
-using CallCenter.src.models;
+﻿using CallCenter.Database;
+using CallCenter.Models;
 using Microsoft.Data.SqlClient;
 using System.Data;
 
-namespace CallCenter.src.dataAccess
+namespace CallCenter.DataAccess
 {
     public class RequestLogDataAccess
     {

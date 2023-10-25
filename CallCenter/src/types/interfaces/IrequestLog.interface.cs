@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualBasic;
 
-namespace CallCenter.src.types.interfaces
+namespace CallCenter.Types
 {
     public interface IrequestLog
     {

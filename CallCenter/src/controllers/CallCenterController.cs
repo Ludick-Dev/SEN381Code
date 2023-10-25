@@ -1,9 +1,8 @@
 using CallCenter.Handlers;
 using Microsoft.AspNetCore.Mvc;
+using CallCenter.DataAccess;
 using CallCenter.Services;
-using CallCenter.src.dataAccess;
-using CallCenter.src.services;
-using CallCenter.src.models;
+using CallCenter.Models;
 
 namespace CallCenter.Controllers
 {
