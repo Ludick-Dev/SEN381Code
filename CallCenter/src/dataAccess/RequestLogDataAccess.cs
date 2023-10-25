@@ -2,6 +2,7 @@
 using CallCenter.Database;
 using CallCenter.src.models;
 using Microsoft.Data.SqlClient;
+using System.Data;
 
 namespace CallCenter.src.dataAccess
 {
@@ -9,12 +10,14 @@ namespace CallCenter.src.dataAccess
     {
         DBconnect connection = new DBconnect();
 
-         //display all request logs 
+        //display all request logs 
         public List<requestLog> DisplayAllRequestLogs()
         {
             SqlConnection con = new SqlConnection(connection.connectionString);
-            string query = "SELECT c.clientId, c.clientName, c.lastCallDate, DATEDIFF(MINUTE, ca.startTime, ca.endTime) AS callDuration, wr.requestId, e.employeeName AS technicianName, ca.PriorityLevel, wr.status FROM Clients c JOIN Calls ca ON c.clientId = ca.clientId JOIN Work w ON ca.workId = w.workId JOIN Technicians t ON w.technicianId = t.technicianId JOIN Employees e ON t.employeeId = e.employeeId JOIN WorkRequests wr ON w.requestId = wr.requestId";
-            SqlCommand cmd = new SqlCommand(query, con);
+            SqlCommand cmd = new SqlCommand("GetAllRequestLogs", con)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
             List<requestLog> logs = new List<requestLog>();
 
             try
@@ -24,7 +27,7 @@ namespace CallCenter.src.dataAccess
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
-                    {   
+                    {
                         requestLog log = new requestLog();
                         log.clientId = reader.GetInt32(0);
                         log.clientName = reader.GetString(1);
@@ -54,21 +57,31 @@ namespace CallCenter.src.dataAccess
 
             return logs;
         }
+
         //search and display request log via client name or request ID
         public requestLog SearchRequestLog(string? clientName, int? requestId)
         {
             requestLog log = new requestLog();
             SqlConnection con = new SqlConnection(connection.connectionString);
-            string query = "SELECT c.clientId, c.clientName, c.lastCallDate, DATEDIFF(MINUTE, ca.startTime, ca.endTime) AS callDuration, wr.requestId, e.employeeName AS technicianName, ca.PriorityLevel, wr.status FROM Clients c JOIN Calls ca ON c.clientId = ca.clientId JOIN Work w ON ca.workId = w.workId JOIN Technicians t ON w.technicianId = t.technicianId JOIN Employees e ON t.employeeId = e.employeeId JOIN WorkRequests wr ON w.requestId = wr.requestId WHERE c.clientName = @clientName OR wr.requestId = @requestId";
-            SqlCommand cmd = new SqlCommand(query, con);
+            SqlCommand cmd = new SqlCommand("SearchRequestLog", con);
+            cmd.CommandType = CommandType.StoredProcedure;
 
             if (clientName != null)
             {
                 cmd.Parameters.AddWithValue("@clientName", clientName);
             }
+            else
+            {
+                cmd.Parameters.AddWithValue("@clientName", DBNull.Value);
+            }
+
             if (requestId != null)
             {
                 cmd.Parameters.AddWithValue("@requestId", requestId);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@requestId", DBNull.Value);
             }
 
             try

@@ -2,6 +2,7 @@
 using CallCenter.Models;
 using Microsoft.Data.SqlClient;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 
 namespace CallCenter.src.dataAccess
@@ -14,37 +15,35 @@ namespace CallCenter.src.dataAccess
         public List<string> GetTechnicianDetails()
         {
             List<string> details = new List<string>();
-            SqlConnection con = new SqlConnection(constring.connectionString);
-            string query = "SELECT t.technicianId, e.employeeName AS technicianName FROM Technicians t JOIN Employees e ON t.employeeId = e.employeeId;";
-            SqlCommand cmd = new SqlCommand(query, con);
-            string id = string.Empty;
-            string name = string.Empty;
-            string detailsConcat = string.Empty;    
-            try
+            using (SqlConnection con = new SqlConnection(constring.connectionString))
             {
-                con.Open();
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                SqlCommand cmd = new SqlCommand("GetTechnicianDetails", con)
                 {
-                    while (reader.Read())
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                try
+                {
+                    con.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                         id = reader.GetInt32(0).ToString();
-                         name = reader.GetString(1).ToString();
-                         detailsConcat = id +": "+ name;
-                         details.Add(detailsConcat);
+                        while (reader.Read())
+                        {
+                            string id = reader["technicianId"].ToString();
+                            string name = reader["technicianName"].ToString();
+                            string detailsConcat = id + ": " + name;
+                            details.Add(detailsConcat);
+                        }
                     }
                 }
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine("SQL Error: " + ex.Message);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error: " + ex.Message);
-            }
-            finally
-            {
-                con.Close();
+                catch (SqlException ex)
+                {
+                    Console.WriteLine("SQL Error: " + ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                }
             }
 
             return details;
@@ -54,13 +53,13 @@ namespace CallCenter.src.dataAccess
         public (string email, string number) GetTechnicianContactDetails(string selection)
         {
             string[] idArr = selection.Split(':');
-            string  id = idArr[0];
+            string id = idArr[0];
             string dbEmail = string.Empty;
             string dbNumber = string.Empty;
 
             SqlConnection con = new SqlConnection(constring.connectionString);
-            string query = "SELECT e.emailAddress, e.phoneNumber FROM Technicians t JOIN Employees e ON t.employeeId = e.employeeId WHERE t.technicianId = @technicianId; ";
-            SqlCommand sqlCommand = new SqlCommand(query, con);
+            SqlCommand sqlCommand = new SqlCommand("GetTechnicianContactInfo", con);
+            sqlCommand.CommandType = CommandType.StoredProcedure;
             sqlCommand.Parameters.AddWithValue("@technicianId", id);
 
             try
@@ -68,7 +67,7 @@ namespace CallCenter.src.dataAccess
                 con.Open();
                 using (SqlDataReader reader = sqlCommand.ExecuteReader())
                 {
-                    while (reader.Read())
+                    if (reader.Read())
                     {
                         dbEmail = reader.GetString(0);
                         dbNumber = reader.GetString(1);

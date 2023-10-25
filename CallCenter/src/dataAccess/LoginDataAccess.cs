@@ -1,10 +1,12 @@
 ﻿using CallCenter.Database;
 using Microsoft.Data.SqlClient;
+using System.Data;
 
 namespace CallCenter.DataAccess
 {
     public class LoginDataAccess
     {
+        //get user credentials
         public (int ID, string Username, string Password) GetUserCredentials(string inputUsername)
         {
             int dbID = 0;
@@ -13,8 +15,10 @@ namespace CallCenter.DataAccess
 
             DBconnect conString = new DBconnect();
             SqlConnection con = new SqlConnection(conString.connectionString);
-            string query = "SELECT employeeId, username, password FROM EmployeeLogin WHERE username = @Username";
-            SqlCommand cmd = new SqlCommand(query, con);
+            SqlCommand cmd = new SqlCommand("GetUserCredentials", con)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
             cmd.Parameters.AddWithValue("@Username", inputUsername);
 
             try
@@ -25,8 +29,8 @@ namespace CallCenter.DataAccess
                     while (reader.Read())
                     {
                         dbID = reader.GetInt32(0);
-                        dbUsername = reader.GetString(1).ToString();
-                        dbPassword = reader.GetString(2).ToString();
+                        dbUsername = reader.GetString(1);
+                        dbPassword = reader.GetString(2);
                     }
                 }
             }
