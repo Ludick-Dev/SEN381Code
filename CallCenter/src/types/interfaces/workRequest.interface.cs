@@ -2,10 +2,10 @@ namespace CallCenter.Types
 {
     interface IWorkRequest
     {
-        int requestID { get; set; }
-        int clientID { get; set; }
-        int serviceTypeID { get; set; }
-        int priorityID { get; set; }
+        Guid requestID { get; set; }
+        Guid clientID { get; set; }
+        Guid serviceTypeID { get; set; }
+        Guid priorityID { get; set; }
         string status { get; set; }
 
     }

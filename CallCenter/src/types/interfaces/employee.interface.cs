@@ -3,7 +3,7 @@ namespace CallCenter.Types
 {
     interface IEmployee
     {
-        int employeeId { get; set; }
+        Guid employeeId { get; set; }
         string employeeName { get; set; }
         string department { get; set; }
         bool availability { get; set; }

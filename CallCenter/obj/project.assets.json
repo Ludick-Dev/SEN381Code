@@ -4226,25 +4226,31 @@
     ]
   },
   "packageFolders": {
-    "/Users/albrechtohsiek/.nuget/packages/": {}
+    "C:\\Users\\Albrecht\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/albrechtohsiek/University/SEN381/SEN381Code/CallCenter/CallCenter.csproj",
+      "projectUniqueName": "C:\\Users\\Albrecht\\Documents\\Visual Studio Code\\SEN381Code\\CallCenter\\CallCenter.csproj",
       "projectName": "CallCenter",
-      "projectPath": "/Users/albrechtohsiek/University/SEN381/SEN381Code/CallCenter/CallCenter.csproj",
-      "packagesPath": "/Users/albrechtohsiek/.nuget/packages/",
-      "outputPath": "/Users/albrechtohsiek/University/SEN381/SEN381Code/CallCenter/obj/",
+      "projectPath": "C:\\Users\\Albrecht\\Documents\\Visual Studio Code\\SEN381Code\\CallCenter\\CallCenter.csproj",
+      "packagesPath": "C:\\Users\\Albrecht\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Albrecht\\Documents\\Visual Studio Code\\SEN381Code\\CallCenter\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/Users/albrechtohsiek/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\Albrecht\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
-        "/usr/local/share/dotnet/library-packs": {},
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -4307,7 +4313,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.400/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -1,11 +1,10 @@
 using CallCenter.Types;
-using MongoDB.Bson;
 
 namespace CallCenter.Models
 {
     public class Work : IWork{
-        public ObjectId workId { get ; set ; }
-        public ObjectId technicianId { get ; set ; }
+        public Guid workId { get ; set ; }
+        public Guid technicianId { get ; set ; }
         public DateTime workDate { get ; set ; }
 
         public Work()
@@ -13,7 +12,7 @@ namespace CallCenter.Models
 
         }
 
-        public Work(ObjectId workId, ObjectId technicianId, DateTime workDate)
+        public Work(Guid workId, Guid technicianId, DateTime workDate)
         {
             this.workId = workId;
             this.technicianId = technicianId;

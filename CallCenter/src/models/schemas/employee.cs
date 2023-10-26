@@ -4,7 +4,7 @@ namespace CallCenter.Models
 {
     public class Employee : IEmployee
     {
-       public int employeeId { get; set; }
+       public Guid employeeId { get; set; }
        public  string employeeName { get; set; }
         public string department { get; set; }
        public  bool availability { get; set; }
@@ -17,7 +17,7 @@ namespace CallCenter.Models
         {
 
         }
-        public Employee(int employeeID, string employeeName, string department, bool availability, string serviceArea, string certificationLevel, string emailAddress, string phoneNumber)
+        public Employee(Guid employeeID, string employeeName, string department, bool availability, string serviceArea, string certificationLevel, string emailAddress, string phoneNumber)
         {
             this.employeeId = employeeID;
             this.employeeName = employeeName;

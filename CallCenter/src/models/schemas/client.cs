@@ -1,11 +1,10 @@
 using CallCenter.Types;
-using MongoDB.Bson;
 
 namespace CallCenter.Models
 {
     public class Client : IClient
     {
-        public ObjectId clientId { get ; set ; }
+        public Guid clientId { get ; set ; }
         public string clientName { get ; set ; }
         public string phoneNumber { get ; set ; }
         public ClientTypes clientType { get ; set ; }
@@ -15,7 +14,7 @@ namespace CallCenter.Models
         {
         }
 
-        public Client(ObjectId clientId, string clientName, string phoneNumber, ClientTypes clientType, List<Contract> contracts)
+        public Client(Guid clientId, string clientName, string phoneNumber, ClientTypes clientType, List<Contract> contracts)
         {
             this.clientId = clientId;
             this.clientName = clientName;
