@@ -28,11 +28,11 @@ namespace CallCenter.DataAccess
                     while (reader.Read())
                     {
                         requestLog log = new requestLog();
-                        log.clientId = reader.GetInt32(0);
+                        log.clientId = reader.GetGuid(0);
                         log.clientName = reader.GetString(1);
                         log.lastCallDate = reader.GetDateTime(2);
                         log.callDuration = reader.GetInt32(3);
-                        log.requestId = reader.GetInt32(4);
+                        log.requestId = reader.GetGuid(4);
                         log.technicianName = reader.GetString(5);
                         log.priorityLevel = reader.GetString(6);
                         log.status = reader.GetString(7);
@@ -91,11 +91,11 @@ namespace CallCenter.DataAccess
                 {
                     while (reader.Read())
                     {
-                        log.clientId = reader.GetInt32(0);
+                        log.clientId = reader.GetGuid(0);
                         log.clientName = reader.GetString(1);
                         log.lastCallDate = reader.GetDateTime(2);
                         log.callDuration = reader.GetInt32(3);
-                        log.requestId = reader.GetInt32(4);
+                        log.requestId = reader.GetGuid(4);
                         log.technicianName = reader.GetString(5);
                         log.priorityLevel = reader.GetString(6);
                         log.status = reader.GetString(7);
