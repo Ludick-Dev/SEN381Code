@@ -16,16 +16,36 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Call Centre App Main\SEN381Code\CallCenter
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Call Centre App Main/SEN381Code/CallCenter/Views/Admin/Admin.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRtaW4uY3NodG1s
+[C:/Call Centre App Main/SEN381Code/CallCenter/Views/Admin/AdminEmployees.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRtaW5FbXBsb3llZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Call Centre App Main/SEN381Code/CallCenter/Views/Admin/AdminRequestLogs.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRtaW5SZXF1ZXN0TG9ncy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Call Centre App Main/SEN381Code/CallCenter/Views/CallCenter/CallCenter.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FsbENlbnRlclxDYWxsQ2VudGVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Call Centre App Main/SEN381Code/CallCenter/Views/ClientMaintenance/ClientMaintenance.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50TWFpbnRlbmFuY2VcQ2xpZW50TWFpbnRlbmFuY2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Call Centre App Main/SEN381Code/CallCenter/Views/ContractMaintenance/ContractMaintenanceContracts.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhY3RNYWludGVuYW5jZVxDb250cmFjdE1haW50ZW5hbmNlQ29udHJhY3RzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Call Centre App Main/SEN381Code/CallCenter/Views/ContractMaintenance/ContractMaintenanceServices.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhY3RNYWludGVuYW5jZVxDb250cmFjdE1haW50ZW5hbmNlU2VydmljZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Call Centre App Main/SEN381Code/CallCenter/Views/Login/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Call Centre App Main/SEN381Code/CallCenter/Views/ServiceRequests/ServiceRequests.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VydmljZVJlcXVlc3RzXFNlcnZpY2VSZXF1ZXN0cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Call Centre App Main/SEN381Code/CallCenter/Views/Shared/_Layout.cshtml]
