@@ -6,7 +6,55 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>CallCenter</title>
+    <style>
+        /* Style for the form container */
+        #modalForm {
+            display: none;
+            max-width: 300px; /* Adjust the width as needed */
+            margin: 20px;
+        }
+
+        /* Style for labels */
+        label {
+            display: block; /* Make labels appear on a new line */
+            margin-top: 10px; /* Add some margin above each label */
+            font-weight: bold;
+        }
+
+        /* Style for inputs */
+        input[type="text"],
+        select {
+            width: 100%; /* Make inputs expand to fill the container width */
+            padding: 5px;
+            margin-top: 5px; /* Add some margin above each input */
+            border: 1px solid #ccc; /* Add a simple border */
+            border-radius: 5px; /* Add rounded corners */
+        }
+
+        /* Style for checkboxes and their labels container */
+        .checkbox-container {
+            display: flex; /* Display checkboxes and labels next to each other */
+            align-items: center; /* Center vertically */
+        }
+
+        /* Style for checkboxes */
+        input[type="checkbox"] {
+            margin-right: 5px; /* Add some space between the checkbox and label */
+        }
+
+        /* Style for submit and close buttons */
+        button {
+            margin: 10px 0;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+    </style>
 </head>
 <body>
 
@@ -16,95 +64,99 @@
     <div id="modalForm" style="display:none;">
         <h3>Express Work Request</h3>
 
-        <label>Client Name:</label>
+        <label class="One">Client Name:</label>
         <input type="text" name="clientName" />
 
-        <label>Client Phone Number:</label>
+        <label class="One">Client Phone Number:</label>
         <input type="text" name="clientPhone" />
 
-        <label>Client Address:</label>
-        <input type="text" name="clientAddress" />
+        <label class="One">
+            Client Address:</labe>
+            <input type="text" name="clientAddress" />
 
-        <label>Problem Description:</label>
-        <input type="text" name="problemDescription" />
+            <label class="One">Problem Description:</label>
+            <input type="text" name="problemDescription" />
 
-        <label>Select Technician:</label>
-        <select name="technician" id="technicianDropdown">
-        </select>
+            <label class="One">Select Technician:</label>
+            <select name="technician" id="technicianDropdown">
+            </select>
 
-        <div>
-            <input type="checkbox" id="notifyEmail" name="notifyEmail" value="Email">
-            <label for="notifyEmail">Notify Technician Via Email</label>
+            <div>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="notifyEmail" name="notifyEmail" value="Email">
+                    <label for="notifyEmail">Notify Technician Via Email</label>
+                </div>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="notifySMS" name="notifySMS" value="SMS">
+                    <label for="notifySMS">Notify Technician Via SMS</label>
+                </div>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="notifyWhatsapp" name="notifyWhatsapp" value="Whatsapp">
+                    <label for="notifyWhatsapp">Notify Technician Via Whatsapp</label>
+                </div>
 
-            <input type="checkbox" id="notifySMS" name="notifySMS" value="SMS">
-            <label for="notifySMS">Notify Technician Via SMS</label>
+                <button type="button" onclick="submitForm()">Submit Express Request</button>
+                <button type="button" onclick="closeModal()">Close</button>
+            </div>
 
-            <input type="checkbox" id="notifyWhatsapp" name="notifyWhatsapp" value="Whatsapp">
-            <label for="notifyWhatsapp">Notify Technician Via Whatsapp</label>
-        </div>
+            <!-- overlay for the modal form -->
+            <div id="overlay" style="display:none;"></div>
 
-        <button type="button" onclick="submitForm()">Submit Express Request</button>
-        <button type="button" onclick="closeModal()">Close</button>
-    </div>
-
-    <!-- overlay for the modal form -->
-    <div id="overlay" style="display:none;"></div>
-
-    <script>
-        //open the modal form
-        function openModal() {
-            document.getElementById('modalForm').style.display = 'block';
-            document.getElementById('overlay').style.display = 'block';
-        }
-        //close the modal form
-        function closeModal() {
-            document.getElementById('modalForm').style.display = 'none';
-            document.getElementById('overlay').style.display = 'none';
-        }
-        //submit the form data and handle the response
-        function submitForm() {
-            //collect form data
-            var formData = {
-                clientName: document.querySelector("input[name='clientName']").value,
-                clientPhone: document.querySelector("input[name='clientPhone']").value,
-                clientAddress: document.querySelector("input[name='clientAddress']").value,
-                problemDescription: document.querySelector("input[name='problemDescription']").value,
-                technicianId: document.querySelector("select[name='technician']").value,
-                notifyEmail: document.querySelector("input[name='notifyEmail']").checked,
-                notifySMS: document.querySelector("input[name='notifySMS']").checked,
-                notifyWhatsapp: document.querySelector("input[name='notifyWhatsapp']").checked
-            };
-            //send form data to the server
-            fetch('/CallCenter/NotifyTechnician', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            })
-                .then(response => {
-                    if (!response.ok) {
-                        return response.text().then(errorText => { throw new Error(errorText); });
-                        closeModal();
-                    }
-                    alert("Technician notified successfully.")
-                    return response.json();
-                })
-        }
-        //add technicians to dropdown menu
-        window.onload = function () {
-            fetch('/CallCenter/GetTechnicians')
-                .then(response => response.json())
-                .then(data => {
-                    var dropdown = document.getElementById('technicianDropdown');
-                    data.forEach(tech => {
-                        var option = document.createElement('option');
-                        option.value = tech.split(':')[0].trim();
-                        option.text = tech;
-                        dropdown.add(option);
-                    });
-                });
-        };
-    </script>
+            <script>
+                //open the modal form
+                function openModal() {
+                    document.getElementById('modalForm').style.display = 'block';
+                    document.getElementById('overlay').style.display = 'block';
+                }
+                //close the modal form
+                function closeModal() {
+                    document.getElementById('modalForm').style.display = 'none';
+                    document.getElementById('overlay').style.display = 'none';
+                }
+                //submit the form data and handle the response
+                function submitForm() {
+                    //collect form data
+                    var formData = {
+                        clientName: document.querySelector("input[name='clientName']").value,
+                        clientPhone: document.querySelector("input[name='clientPhone']").value,
+                        clientAddress: document.querySelector("input[name='clientAddress']").value,
+                        problemDescription: document.querySelector("input[name='problemDescription']").value,
+                        technicianId: document.querySelector("select[name='technician']").value,
+                        notifyEmail: document.querySelector("input[name='notifyEmail']").checked,
+                        notifySMS: document.querySelector("input[name='notifySMS']").checked,
+                        notifyWhatsapp: document.querySelector("input[name='notifyWhatsapp']").checked
+                    };
+                    //send form data to the server
+                    fetch('/CallCenter/NotifyTechnician', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(formData),
+                    })
+                        .then(response => {
+                            if (!response.ok) {
+                                return response.text().then(errorText => { throw new Error(errorText); });
+                                closeModal();
+                            }
+                            alert("Technician notified successfully.")
+                            return response.json();
+                        })
+                }
+                //add technicians to dropdown menu
+                window.onload = function () {
+                    fetch('/CallCenter/GetTechnicians')
+                        .then(response => response.json())
+                        .then(data => {
+                            var dropdown = document.getElementById('technicianDropdown');
+                            data.forEach(tech => {
+                                var option = document.createElement('option');
+                                option.value = tech.split(':')[0].trim();
+                                option.text = tech;
+                                dropdown.add(option);
+                            });
+                        });
+                };
+            </script>
 </body>
 </html>
