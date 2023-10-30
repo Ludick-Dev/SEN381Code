@@ -11,15 +11,15 @@ namespace CallCenter.Models
         public List<Contract> contracts { get ; set ; }
         public string clientAddress { get; set; }
         public DateTime lastCallDate { get; set; }
-        public int requestId { get; set; }
-        public int employeeId { get; set; } 
+        public Guid requestId { get; set; }
+        public Guid employeeId { get; set; } 
         public string clientNotes { get; set; }
 
         public Client()
         {
         }
 
-        public Client(Guid clientId, string clientName, string phoneNumber, ClientTypes clientType, List<Contract> contracts, string clientAddress, DateTime lastCallDate, int requestId, int employeeId, string clientNotes)
+        public Client(Guid clientId, string clientName, string phoneNumber, ClientTypes clientType, List<Contract> contracts, string clientAddress, DateTime lastCallDate, Guid requestId, Guid employeeId, string clientNotes)
         {
             this.clientId = clientId;
             this.clientName = clientName;

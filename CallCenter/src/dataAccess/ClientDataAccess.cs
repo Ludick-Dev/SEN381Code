@@ -84,8 +84,8 @@ namespace CallCenter.src.dataAccess
                         client.phoneNumber = reader.GetString(2);
                         client.clientAddress = reader.GetString(3);
                         client.lastCallDate = reader.GetDateTime(4);
-                        client.requestId = reader.GetInt32(5);
-                        client.employeeId = reader.GetInt32(6);
+                        client.requestId = reader.GetGuid(5);
+                        client.employeeId = reader.GetGuid(6);
                         client.clientNotes = reader.GetString(7);
                     }
                 }
