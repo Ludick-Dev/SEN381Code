@@ -1,4 +1,5 @@
-﻿using CallCenter.Database;
+﻿using CallCenter.Config;
+using CallCenter.Database;
 using CallCenter.Models;
 using CallCenter.Types;
 using Microsoft.Data.SqlClient;
@@ -8,6 +9,13 @@ namespace CallCenter.src.dataAccess
 {
     public class ClientDataAccess
     {
+
+        private readonly DatabaseConfig configuration;
+
+        public ClientDataAccess(DatabaseConfig configuration){
+            this.configuration = configuration;
+        }
+
         //display list of all clients
         public List<Client> DisplayAllClients()
         {  

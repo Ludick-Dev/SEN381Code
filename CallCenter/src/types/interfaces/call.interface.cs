@@ -4,8 +4,8 @@ namespace CallCenter.Types
         Guid callId {get; set;}
         Guid clientId {get; set;}
         DateTime startTime {get; set;}
-        DateTime endTime {get; set;}
+        DateTime? endTime {get; set;}
         Guid employeeId {get; set;}
-        Guid workId {get; set;}
+        Guid? workId {get; set;}
     }
 }

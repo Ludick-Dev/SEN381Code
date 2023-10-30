@@ -6,9 +6,9 @@ namespace CallCenter.Models{
         public Guid callId { get ; set ; }
         public Guid clientId { get ; set ; }
         public DateTime startTime { get ; set ; }
-        public DateTime endTime { get ; set ; }
+        public DateTime? endTime { get ; set ; }
         public Guid employeeId { get ; set ; }
-        public Guid workId { get ; set ; }
+        public Guid? workId { get ; set ; }
     
         public Call()
         {
