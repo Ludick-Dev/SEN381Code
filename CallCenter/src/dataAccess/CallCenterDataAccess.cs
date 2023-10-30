@@ -1,5 +1,4 @@
 ﻿using CallCenter.Config;
-using CallCenter.Database;
 using Microsoft.Data.SqlClient;
 using System.Data;
 

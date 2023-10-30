@@ -1,6 +1,5 @@
 using CallCenter.Handlers;
 using Microsoft.AspNetCore.Mvc;
-using CallCenter.DataAccess;
 using CallCenter.Services;
 using CallCenter.Models;
 using CallCenter.Repository;
