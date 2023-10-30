@@ -49,5 +49,40 @@ namespace CallCenter.DataAccess
 
             return (dbID, dbUsername, dbPassword);
         }
+
+        //get user department for redirection to correct page after login
+        public string GetUserDepartment(string username)
+        {
+            string department = string.Empty;
+            DBconnect dbconnect = new DBconnect();
+            SqlConnection sqlConnection = new SqlConnection(dbconnect.connectionString);
+            SqlCommand sqlCommand = new SqlCommand("GetEmployeeDepartment",sqlConnection);
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlCommand.Parameters.AddWithValue("@username", username);
+            try
+            {
+                sqlConnection.Open();
+                using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        department = reader.GetString(0);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("SQL Error: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
+            return department;
+        }
     }
 }
