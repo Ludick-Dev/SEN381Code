@@ -10,21 +10,20 @@ public class DatabaseServices
         _connectionString = configuration.GetSection("Database:DefaultConnection").Value;
     }
 
-    public IDbConnection GetOpenConnection()
+    public SqlConnection GetOpenConnection()
     {
-        IDbConnection connection = new SqlConnection(_connectionString);
+        SqlConnection connection = new SqlConnection(_connectionString);
         connection.Open();
         return connection;
     }
 
-    public IDbCommand CreateCommand(string query, IDbConnection connection)
-    {
-        IDbCommand command = connection.CreateCommand();
-        command.CommandText = query;
-        return command;
-    }
+    public SqlCommand CreateCommand(string query, SqlConnection connection)
+{
+    SqlCommand command = new SqlCommand(query, connection);
+    return command;
+}
 
-    public void CloseConnection(IDbConnection connection)
+    public void CloseConnection(SqlConnection connection)
     {
         if (connection.State == ConnectionState.Open)
         {

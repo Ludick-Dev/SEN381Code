@@ -6,21 +6,18 @@ namespace CallCenter.Repository
 {
     public class CallRepository
     {
+        private readonly DatabaseServices _dbService;
 
-        private readonly string connectionString;
-
-        public CallRepository(string connectionString)
+        public CallRepository(DatabaseServices dbService)
         {
-            this.connectionString = connectionString;
+            _dbService = dbService;
         }
 
         public async Task AddCall(Call call)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = _dbService.GetOpenConnection())
             {
-                await connection.OpenAsync();
-
-                using (SqlCommand command = new SqlCommand("createNewCall", connection))
+                using (SqlCommand command = _dbService.CreateCommand("createNewCall", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
 
