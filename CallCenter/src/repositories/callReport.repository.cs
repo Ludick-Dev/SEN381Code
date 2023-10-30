@@ -13,7 +13,7 @@ namespace CallCenter.Repository
             _dbService = dbService;
         }
 
-        private async Task<List<CallReport>> ExecuteCallQueryAsync(string queryName, SqlParameter[] parameters = null)
+        private async Task<List<CallReport>> ExecuteCallReportQueryAsync(string queryName, SqlParameter[] parameters = null)
         {
             using (SqlConnection connection = _dbService.GetOpenConnection())
             using (SqlCommand command = _dbService.CreateCommand(queryName, connection))
@@ -60,12 +60,12 @@ namespace CallCenter.Repository
 
             };
 
-            await ExecuteCallQueryAsync("createNewCallReport", parameters);
+            await ExecuteCallReportQueryAsync("createNewCallReport", parameters);
         }
 
         public async Task<List<CallReport>> GetCallReports()
         {
-            return await ExecuteCallQueryAsync("getAllCallReports");
+            return await ExecuteCallReportQueryAsync("getAllCallReports");
         }
 
         public async Task<List<CallReport>> GetCallReportsByCallReportId(Guid callReportId)
@@ -75,7 +75,7 @@ namespace CallCenter.Repository
                 new SqlParameter("@callReportId", callReportId)
             };
 
-            return await ExecuteCallQueryAsync("getAllCallReportsById", parameters);
+            return await ExecuteCallReportQueryAsync("getAllCallReportsById", parameters);
         }
 
         public async Task<List<CallReport>> GetCallReportsByWorkId(Guid workId)
@@ -85,7 +85,7 @@ namespace CallCenter.Repository
                 new SqlParameter("@workId", workId)
             };
 
-            return await ExecuteCallQueryAsync("getAllCallReportsByWorkId", parameters);
+            return await ExecuteCallReportQueryAsync("getAllCallReportsByWorkId", parameters);
         }
     }
 }

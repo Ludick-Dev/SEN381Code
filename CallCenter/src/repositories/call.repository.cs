@@ -55,6 +55,7 @@ namespace CallCenter.Repository
                 return calls;
             }
         }
+        
         public async Task AddCall(Call call)
         {
             SqlParameter[] parameters = new SqlParameter[]
