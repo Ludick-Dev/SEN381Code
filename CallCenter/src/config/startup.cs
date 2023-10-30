@@ -18,16 +18,23 @@ namespace CallCenter.Config
 
             DatabaseConfig databaseConfig = new DatabaseConfig();
 
-            configuration.Bind("Database", databaseConfig); 
+            configuration.Bind("Database", databaseConfig);
             services.AddSingleton(databaseConfig);
             services.AddSingleton<DatabaseServices>();
 
             services.AddLogging();
             services.AddControllersWithViews();
 
-            // Add your other services here
-
-            // services.AddSingleton();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("All Access", builder =>
+                {
+                    builder.AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
+            
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment environment)
