@@ -1,4 +1,5 @@
 using System.Data;
+using System.Runtime.CompilerServices;
 using CallCenter.Models;
 using Microsoft.Data.SqlClient;
 
@@ -13,34 +14,101 @@ namespace CallCenter.Repository
             _dbService = dbService;
         }
 
-        public async Task AddCall(Call call)
+        private async Task<List<Call>> ExecuteCallQueryAsync(string queryName, SqlParameter[] parameters = null)
         {
             using (SqlConnection connection = _dbService.GetOpenConnection())
+            using (SqlCommand command = _dbService.CreateCommand(queryName, connection))
             {
-                using (SqlCommand command = _dbService.CreateCommand("createNewCall", connection))
+                command.CommandType = CommandType.StoredProcedure;
+
+                if (parameters != null)
                 {
-                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddRange(parameters);
+                }
 
-                    // Add parameters for the stored procedure
-                    command.Parameters.Add(new SqlParameter("@clientId", call.callId));
-                    command.Parameters.Add(new SqlParameter("@clientId", call.clientId));
-                    command.Parameters.Add(new SqlParameter("@employeeId", call.employeeId));
-                    command.Parameters.Add(new SqlParameter("@workId", call.workId));
-                    command.Parameters.Add(new SqlParameter("@startTime", call.startTime));
-                    command.Parameters.Add(new SqlParameter("@endTime", call.endTime));
+                List<Call> calls = new List<Call>();
 
-                    try
+                try
+                {
+                    using (SqlDataReader reader = await command.ExecuteReaderAsync())
                     {
-                        await command.ExecuteNonQueryAsync();
-                    }
-                    catch (Exception ex)
-                    {
-                        // Handle any exceptions that may occur during the execution of the stored procedure.
-                        // You may log the exception or take appropriate actions.
-                        throw ex;
+                        while (await reader.ReadAsync())
+                        {
+                            Call call = new Call
+                            {
+                                callId = reader.GetGuid(reader.GetOrdinal("callId")),
+                                clientId = reader.GetGuid(reader.GetOrdinal("clientId")),
+                                startTime = reader.GetDateTime(reader.GetOrdinal("startTime")),
+                                endTime = reader.IsDBNull(reader.GetOrdinal("endTime")) ? null : reader.GetDateTime(reader.GetOrdinal("endTime")),
+                                employeeId = reader.GetGuid(reader.GetOrdinal("employeeId")),
+                                workId = reader.IsDBNull(reader.GetOrdinal("workId")) ? null : reader.GetGuid(reader.GetOrdinal("workId"))
+                            };
+                            calls.Add(call);
+                        }
                     }
                 }
+                catch (Exception ex)
+                {
+                    // Handle any exceptions that may occur during the execution of the stored procedure.
+                    throw ex;
+                }
+
+                return calls;
             }
+        }
+        public async Task AddCall(Call call)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@callId", call.callId),
+                new SqlParameter("@clientId", call.clientId),
+                new SqlParameter("@employeeId", call.employeeId),
+                new SqlParameter("@workId", call.workId),
+                new SqlParameter("@startTime", call.startTime),
+                new SqlParameter("@endTime", call.endTime)
+            };
+
+            await ExecuteCallQueryAsync("createNewCall", parameters);
+        }
+
+        public async Task UpdateCall(Call call)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@callId", call.callId),
+                new SqlParameter("@clientId", call.clientId),
+                new SqlParameter("@employeeId", call.employeeId),
+                new SqlParameter("@workId", call.workId),
+                new SqlParameter("@startTime", call.startTime),
+                new SqlParameter("@endTime", call.endTime)
+            };
+
+            await ExecuteCallQueryAsync("updateCallsById", parameters);
+        }
+
+        public async Task<List<Call>> SelectAllCalls()
+        {
+            return await ExecuteCallQueryAsync("selectAllCalls");
+        }
+
+        public async Task<List<Call>> SelectCallsByClientId(Guid clientId)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@clientId", clientId)
+            };
+
+            return await ExecuteCallQueryAsync("selectCallsByClientId", parameters);
+        }
+
+        public async Task<List<Call>> SelectCallsByWorkId(Guid workId)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@workId", workId)
+            };
+
+            return await ExecuteCallQueryAsync("selectCallsByWorkId", parameters);
         }
     }
 }
