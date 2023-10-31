@@ -91,6 +91,11 @@ namespace CallCenter.Repository
             await ExecuteClientQueryAsync("updateClient", parameters);
         }
 
+        public async Task<List<Client>> GetAllClients()
+        {
+            return await ExecuteClientQueryAsync("selectAllClients");
+        }
+
         public async Task GetClientById(Guid clientId)
         {
             SqlParameter[] parameters = new SqlParameter[]

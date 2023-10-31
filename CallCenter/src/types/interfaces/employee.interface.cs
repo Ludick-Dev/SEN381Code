@@ -5,7 +5,7 @@ namespace CallCenter.Types
     {
         Guid employeeId { get; set; }
         string employeeName { get; set; }
-        string department { get; set; }
+        Department department { get; set; }
         bool availability { get; set; }
         string serviceArea { get; set; }
         string certificationLevel { get; set; }

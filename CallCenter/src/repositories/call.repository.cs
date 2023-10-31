@@ -86,7 +86,7 @@ namespace CallCenter.Repository
             await ExecuteCallQueryAsync("updateCallsById", parameters);
         }
 
-        public async Task<List<Call>> SelectAllCalls()
+        public async Task<List<Call>> GetAllCalls()
         {
             return await ExecuteCallQueryAsync("selectAllCalls");
         }
