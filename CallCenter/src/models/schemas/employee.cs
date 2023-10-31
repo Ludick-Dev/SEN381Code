@@ -7,9 +7,6 @@ namespace CallCenter.Models
         public Guid employeeId { get; set; }
         public string employeeName { get; set; }
         public Department department { get; set; }
-        public bool availability { get; set; }
-        public string serviceArea { get; set; }
-        public string certificationLevel { get; set; }
         public string emailAddress { get; set; }
         public string phoneNumber { get; set; }
 
@@ -17,14 +14,11 @@ namespace CallCenter.Models
         {
 
         }
-        public Employee(Guid employeeID, string employeeName, Department department, bool availability, string serviceArea, string certificationLevel, string emailAddress, string phoneNumber)
+        public Employee(Guid employeeID, string employeeName, Department department, string emailAddress, string phoneNumber)
         {
             this.employeeId = employeeID;
             this.employeeName = employeeName;
             this.department = department;
-            this.availability = availability;
-            this.serviceArea = serviceArea;
-            this.certificationLevel = certificationLevel;
             this.emailAddress = emailAddress;
             this.phoneNumber = phoneNumber;
         }

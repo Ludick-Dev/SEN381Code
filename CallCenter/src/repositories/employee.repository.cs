@@ -39,9 +39,6 @@ namespace CallCenter.Repository
                                 employeeId = reader.GetGuid(reader.GetOrdinal("employeeId")),
                                 employeeName = reader.GetString(reader.GetOrdinal("employeeName")),
                                 department = (Department)reader.GetInt32(reader.GetOrdinal("department")),
-                                availability = reader.GetBoolean(reader.GetOrdinal("availability")),
-                                serviceArea = reader.GetString(reader.GetOrdinal("serviceArea")),
-                                certificationLevel = reader.GetString(reader.GetOrdinal("certificationLevel")),
                                 emailAddress = reader.GetString(reader.GetOrdinal("emailAddress")),
                                 phoneNumber = reader.GetString(reader.GetOrdinal("phoneNumber")),
 
@@ -67,9 +64,6 @@ namespace CallCenter.Repository
                 new SqlParameter("@employeeId", employee.employeeId),
                 new SqlParameter("@employeeName", employee.employeeName),
                 new SqlParameter("@department", employee.department),
-                new SqlParameter("@availability", employee.availability),
-                new SqlParameter("@serviceArea", employee.serviceArea),
-                new SqlParameter("@certificationLevel", employee.certificationLevel),
                 new SqlParameter("@emailAddress", employee.emailAddress),
                 new SqlParameter("@phoneNumber", employee.phoneNumber),
             };
@@ -84,9 +78,6 @@ namespace CallCenter.Repository
                 new SqlParameter("@employeeId", employee.employeeId),
                 new SqlParameter("@employeeName", employee.employeeName),
                 new SqlParameter("@department", employee.department),
-                new SqlParameter("@availability", employee.availability),
-                new SqlParameter("@serviceArea", employee.serviceArea),
-                new SqlParameter("@certificationLevel", employee.certificationLevel),
                 new SqlParameter("@emailAddress", employee.emailAddress),
                 new SqlParameter("@phoneNumber", employee.phoneNumber),
             };
@@ -96,7 +87,7 @@ namespace CallCenter.Repository
 
         public async Task<List<Employee>> GetAllEmployees()
         {
-            return await ExecuteEmployeeQueryAsync("selectAllClients");
+            return await ExecuteEmployeeQueryAsync("selectAllEmployees");
         }
 
         public async Task GetEmployeeById(Guid employeeId)

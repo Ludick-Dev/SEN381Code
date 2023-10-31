@@ -2,23 +2,28 @@ using CallCenter.Types;
 
 namespace CallCenter.Models
 {
-    public class Technician //: ITechnician
+    public class Technician : ITechnician
     {
-        public int skillLevel { get ; set ; }
-        public Guid employeeId { get ; set ; }
-        public string employeeName { get ; set ; }
-        public Department emplyeeDepartment { get ; set ; }
+        public Guid technicianId {get; set;}
+        public Guid employeeId {get; set;}
+        public int skillLevel {get; set;}
+        public bool availability { get; set; }
+        public string serviceArea { get; set; }
+        public string certificationLevel { get; set; }
     
         public Technician()
         {
+
         }
         
-        public Technician(int skillLevel, Guid employeeId, string employeeName, Department employeeDepartment)
+        public Technician(Guid technicianId, Guid employeeId, int skillLevel, bool availability, string serviceArea, string certificationLevel)
         {
+            this.technicianId = technicianId;
             this.skillLevel = skillLevel;
             this.employeeId = employeeId;
-            this.employeeName = employeeName;
-            this.emplyeeDepartment = emplyeeDepartment;
+            this.availability = availability;
+            this.serviceArea = serviceArea;
+            this.certificationLevel = certificationLevel;
         }
     }
 }
