@@ -8,11 +8,9 @@ namespace CallCenter.Models
         public string clientName { get ; set ; }
         public string phoneNumber { get ; set ; }
         public ClientTypes clientType { get ; set ; }
-        public List<Contract> contracts { get ; set ; }
+        public List<Contract>? contracts { get ; set ; }
         public string clientAddress { get; set; }
         public DateTime lastCallDate { get; set; }
-        public Guid requestId { get; set; }
-        public Guid employeeId { get; set; } 
         public string clientNotes { get; set; }
 
         public Client()
@@ -28,8 +26,6 @@ namespace CallCenter.Models
             this.contracts = contracts;
             this.clientAddress = clientAddress;
             this.lastCallDate = lastCallDate;
-            this.requestId = requestId;
-            this.employeeId = employeeId;
             this.clientNotes = clientNotes;
         }
     }
