@@ -10,14 +10,14 @@ namespace CallCenter.DataAccess
         DBconnect connection = new DBconnect();
 
         //display all request logs 
-        public List<requestLog> DisplayAllRequestLogs()
+        public List<RequestLog> DisplayAllRequestLogs()
         {
             SqlConnection con = new SqlConnection(connection.connectionString);
             SqlCommand cmd = new SqlCommand("GetAllRequestLogs", con)
             {
                 CommandType = CommandType.StoredProcedure
             };
-            List<requestLog> logs = new List<requestLog>();
+            List<RequestLog> logs = new List<RequestLog>();
 
             try
             {
@@ -27,7 +27,7 @@ namespace CallCenter.DataAccess
                 {
                     while (reader.Read())
                     {
-                        requestLog log = new requestLog();
+                        RequestLog log = new RequestLog();
                         log.clientId = reader.GetGuid(0);
                         log.clientName = reader.GetString(1);
                         log.lastCallDate = reader.GetDateTime(2);
@@ -58,9 +58,9 @@ namespace CallCenter.DataAccess
         }
 
         //search and display request log via client name or request ID
-        public requestLog SearchRequestLog(string? clientName, int? requestId)
+        public RequestLog SearchRequestLog(string? clientName, int? requestId)
         {
-            requestLog log = new requestLog();
+            RequestLog log = new RequestLog();
             SqlConnection con = new SqlConnection(connection.connectionString);
             SqlCommand cmd = new SqlCommand("SearchRequestLog", con);
             cmd.CommandType = CommandType.StoredProcedure;
