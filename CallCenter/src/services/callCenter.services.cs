@@ -1,9 +1,8 @@
 using CallCenter.Models;
 using MongoDB.Bson;
-using CallCenter.DataAccess;
-using CallCenter.src.dataAccess;
 
-namespace CallCenter.Services{
+namespace CallCenter.Services
+{
     public class CallCenterService
     {
         public CallCenterService()

@@ -1,4 +1,4 @@
-﻿namespace CallCenter.src.models
+﻿namespace CallCenter.Models
 {
     public class NotifyTechnicianRequest
     {

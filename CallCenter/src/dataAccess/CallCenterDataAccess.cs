@@ -1,21 +1,22 @@
-﻿using CallCenter.Database;
-using CallCenter.Models;
+﻿using CallCenter.Config;
 using Microsoft.Data.SqlClient;
-using System.Collections.Generic;
 using System.Data;
-using System.Text;
 
-namespace CallCenter.src.dataAccess
+namespace CallCenter.DataAccess
 {
     public class CallCenterDataAccess
     {
-        DBconnect constring = new DBconnect();
+        private readonly DatabaseConfig configuration;
+
+        public CallCenterDataAccess(DatabaseConfig configuration){
+            this.configuration = configuration;
+        }
 
         //get technician ID and Name from the DB to display in the dropdown menu in the express work request view form
         public List<string> GetTechnicianDetails()
         {
             List<string> details = new List<string>();
-            using (SqlConnection con = new SqlConnection(constring.connectionString))
+            using (SqlConnection con = new SqlConnection(configuration.DefaultConnection))
             {
                 SqlCommand cmd = new SqlCommand("GetTechnicianDetails", con)
                 {
@@ -57,7 +58,7 @@ namespace CallCenter.src.dataAccess
             string dbEmail = string.Empty;
             string dbNumber = string.Empty;
 
-            SqlConnection con = new SqlConnection(constring.connectionString);
+            SqlConnection con = new SqlConnection(configuration.DefaultConnection);
             SqlCommand sqlCommand = new SqlCommand("GetTechnicianContactInfo", con);
             sqlCommand.CommandType = CommandType.StoredProcedure;
             sqlCommand.Parameters.AddWithValue("@technicianId", id);

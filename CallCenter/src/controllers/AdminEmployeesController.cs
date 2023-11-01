@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace CallCenter.src.controllers
+namespace CallCenter.Controllers
 {
     public class AdminEmployeesController : Controller
     {

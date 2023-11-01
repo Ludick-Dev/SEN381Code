@@ -1,10 +1,9 @@
-﻿using Amazon.Auth.AccessControlPolicy.ActionIdentifiers;
-using CallCenter.Database;
+﻿using CallCenter.Database;
 using CallCenter.Models;
 using Microsoft.Data.SqlClient;
 using System.Data;
 
-namespace CallCenter.src.dataAccess
+namespace CallCenter.DataAccess
 {
     public class EmployeeDataAccess
     {
@@ -26,7 +25,7 @@ namespace CallCenter.src.dataAccess
                     while (reader.Read())
                     {
                         Employee employee = new Employee();
-                        employee.employeeId = reader.GetInt32(0);
+                        employee.employeeId = reader.GetGuid(0);
                         employee.employeeName = reader.GetString(1);
                         employee.department = reader.GetString(2);
                         employee.availability = reader.GetBoolean(3);
@@ -190,7 +189,7 @@ namespace CallCenter.src.dataAccess
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
-                    employee.employeeId = reader.GetInt32(0);
+                    employee.employeeId = reader.GetGuid(0);
                     employee.employeeName = reader.GetString(1);
                     employee.department = reader.IsDBNull(2) ? null : reader.GetString(2);
                     employee.availability = reader.GetBoolean(3);

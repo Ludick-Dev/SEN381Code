@@ -1,24 +1,23 @@
-﻿using CallCenter.Models;
-using CallCenter.Database;
-using CallCenter.src.models;
+﻿using CallCenter.Database;
+using CallCenter.Models;
 using Microsoft.Data.SqlClient;
 using System.Data;
 
-namespace CallCenter.src.dataAccess
+namespace CallCenter.DataAccess
 {
     public class RequestLogDataAccess
     {
         DBconnect connection = new DBconnect();
 
         //display all request logs 
-        public List<requestLog> DisplayAllRequestLogs()
+        public List<RequestLog> DisplayAllRequestLogs()
         {
             SqlConnection con = new SqlConnection(connection.connectionString);
             SqlCommand cmd = new SqlCommand("GetAllRequestLogs", con)
             {
                 CommandType = CommandType.StoredProcedure
             };
-            List<requestLog> logs = new List<requestLog>();
+            List<RequestLog> logs = new List<RequestLog>();
 
             try
             {
@@ -28,12 +27,12 @@ namespace CallCenter.src.dataAccess
                 {
                     while (reader.Read())
                     {
-                        requestLog log = new requestLog();
-                        log.clientId = reader.GetInt32(0);
+                        RequestLog log = new RequestLog();
+                        log.clientId = reader.GetGuid(0);
                         log.clientName = reader.GetString(1);
                         log.lastCallDate = reader.GetDateTime(2);
                         log.callDuration = reader.GetInt32(3);
-                        log.requestId = reader.GetInt32(4);
+                        log.requestId = reader.GetGuid(4);
                         log.technicianName = reader.GetString(5);
                         log.priorityLevel = reader.GetString(6);
                         log.status = reader.GetString(7);
@@ -59,9 +58,9 @@ namespace CallCenter.src.dataAccess
         }
 
         //search and display request log via client name or request ID
-        public requestLog SearchRequestLog(string? clientName, int? requestId)
+        public RequestLog SearchRequestLog(string? clientName, int? requestId)
         {
-            requestLog log = new requestLog();
+            RequestLog log = new RequestLog();
             SqlConnection con = new SqlConnection(connection.connectionString);
             SqlCommand cmd = new SqlCommand("SearchRequestLog", con);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -92,11 +91,11 @@ namespace CallCenter.src.dataAccess
                 {
                     while (reader.Read())
                     {
-                        log.clientId = reader.GetInt32(0);
+                        log.clientId = reader.GetGuid(0);
                         log.clientName = reader.GetString(1);
                         log.lastCallDate = reader.GetDateTime(2);
                         log.callDuration = reader.GetInt32(3);
-                        log.requestId = reader.GetInt32(4);
+                        log.requestId = reader.GetGuid(4);
                         log.technicianName = reader.GetString(5);
                         log.priorityLevel = reader.GetString(6);
                         log.status = reader.GetString(7);

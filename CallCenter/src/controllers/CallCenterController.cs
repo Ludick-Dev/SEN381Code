@@ -1,9 +1,10 @@
 using CallCenter.Handlers;
 using Microsoft.AspNetCore.Mvc;
 using CallCenter.Services;
-using CallCenter.src.dataAccess;
-using CallCenter.src.services;
-using CallCenter.src.models;
+using CallCenter.Models;
+using CallCenter.Repository;
+using CallCenter.Models.Responses;
+using Microsoft.Data.SqlClient;
 
 namespace CallCenter.Controllers
 {
@@ -11,7 +12,16 @@ namespace CallCenter.Controllers
     [Route("/CallCenter")]
     public class CallCenterController : Controller
     {
-        [HttpGet("CallCenter")]
+        private readonly CallRepository _callRepository;
+        private readonly DatabaseServices _dbService;
+
+        public CallCenterController(DatabaseServices dbService, CallRepository callRepository)
+        {
+            _callRepository = callRepository;
+            _dbService = dbService;
+        }
+
+        [HttpGet]
         public IActionResult CallCenter()
         {
             return View("CallCenter");
@@ -20,54 +30,114 @@ namespace CallCenter.Controllers
         [HttpGet("GetTechnicians")]
         public IActionResult GetTechnicians()
         {
-            CallCenterDataAccess dataAccess = new CallCenterDataAccess();
-            var technicians = dataAccess.GetTechnicianDetails();
-            return Json(technicians);
+            using (var connection = _dbService.GetOpenConnection())
+            {
+                string query = "SELECT * FROM Technicians";
+                using (var command = _dbService.CreateCommand(query, connection))
+                {
+                    var technicians = new List<Technician>(); // Replace Technician with your actual model
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            // Populate the technicians list with data from the database
+                            var technician = new Technician
+                            {
+                                // Map database columns to the properties of your Technician model
+                                // Example: technician.Id = reader.GetInt32(reader.GetOrdinal("Id"));
+                            };
+                            technicians.Add(technician);
+                        }
+                    }
+                    return Ok(technicians);
+                }
+            }
         }
+
 
         //notifiy selected technician of new "express" work request on express work request form
         [HttpPost("NotifyTechnician")]
         public IActionResult NotifyTechnician([FromBody] NotifyTechnicianRequest request)
         {
-            var dataAccess = new CallCenterDataAccess();
-            (string email, string phoneNumber) contactDetails = dataAccess.GetTechnicianContactDetails(request.TechnicianId);
-
-            string message = "New Express Work Request!\n" +
-                 "Client Name: " + request.ClientName + "\n" +
-                 "Client Phone: " + request.ClientPhone + "\n" +
-                 "Client Address: " + request.ClientAddress + "\n" +
-                 "Problem Description: " + request.ProblemDescription;
-            try
+            using (var connection = _dbService.GetOpenConnection())
             {
-                if (request.NotifyEmail)
+                // Modify the query to get contact details for the specified technician
+                string query = "SELECT Email, PhoneNumber FROM Technicians WHERE TechnicianId = @TechnicianId";
+                using (var command = _dbService.CreateCommand(query, connection))
                 {
-                    var emailService = new EmailNotificationServices();
-                    emailService.Notify(message, contactDetails.email);
-                }
-                if (request.NotifySMS)
-                {
-                    var smsService = new SMSNotificationServices();
-                    smsService.Notify(message, contactDetails.phoneNumber);
-                }
-                if (request.NotifyWhatsapp)
-                {
-                    var whatsappService = new WhatsappNotificationServices();
-                    whatsappService.Notify(message, contactDetails.phoneNumber);
-                }
+                    command.Parameters.Add(new SqlParameter("@TechnicianId", request.TechnicianId));
 
-                return Ok("Notifications sent successfully!");
-            }
-            catch (Exception ex) 
-            {
-                return BadRequest("Error sending notification. Phone number: " + contactDetails.phoneNumber + ". Email: "+ contactDetails.email + ". Error: " + ex.Message);
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            string email = reader.GetString(reader.GetOrdinal("Email"));
+                            string phoneNumber = reader.GetString(reader.GetOrdinal("PhoneNumber"));
+
+                            string message = "New Express Work Request!\n" +
+                                "Client Name: " + request.ClientName + "\n" +
+                                "Client Phone: " + request.ClientPhone + "\n" +
+                                "Client Address: " + request.ClientAddress + "\n" +
+                                "Problem Description: " + request.ProblemDescription;
+
+                            try
+                            {
+                                if (request.NotifyEmail)
+                                {
+                                    var emailService = new EmailNotificationServices();
+                                    emailService.Notify(message, email);
+                                }
+                                if (request.NotifySMS)
+                                {
+                                    var smsService = new SMSNotificationServices();
+                                    smsService.Notify(message, phoneNumber);
+                                }
+                                if (request.NotifyWhatsapp)
+                                {
+                                    var whatsappService = new WhatsappNotificationServices();
+                                    whatsappService.Notify(message, phoneNumber);
+                                }
+
+                                return Ok("Notifications sent successfully!");
+                            }
+                            catch (Exception ex)
+                            {
+                                return BadRequest("Error sending notification. Phone number: " + phoneNumber + ". Email: " + email + ". Error: " + ex.Message);
+                            }
+                        }
+                        else
+                        {
+                            return NotFound("Technician not found");
+                        }
+                    }
+                }
             }
         }
 
-        [HttpGet("AnswerCall")]
-        public IActionResult AnswerCall()
+
+        [HttpPost("AnswerCall")]
+        public async Task<IActionResult> AnswerCall(AddCallToRequest call)
         {
-            return CallCenterHandler.AnswerCall();
+            if (!ModelState.IsValid)
+            {
+                return BadRequestModelStateResponse.BadRequestModelState(ModelState);
+            }
+
+            Call _call = new Call()
+            {
+                callId = Guid.NewGuid(),
+                clientId = call.ClientId,
+                startTime = call.StartTime,
+                endTime = call.EndTime,
+                employeeId = call.EmployeeId,
+                workId = call.WorkId
+            };
+
+            await _callRepository.AddCall(_call);
+            return Ok();
         }
+
+
 
         [HttpGet("ViewCientDetails")]
         public IActionResult ViewClientDetails()

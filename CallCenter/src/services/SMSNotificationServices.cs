@@ -1,9 +1,9 @@
-﻿using CallCenter.src.types.interfaces;
+﻿using CallCenter.Types;
 using Twilio;
 using Twilio.Rest.Api.V2010.Account;
 using Twilio.Types;
 
-namespace CallCenter.src.services
+namespace CallCenter.Services
 {
     //implements SMS notification services using Twilio API
     public class SMSNotificationServices : INotificationStrategy
