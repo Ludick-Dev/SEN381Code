@@ -63,7 +63,7 @@ namespace CallCenter.Controllers
             return Ok();
         }
 
-        [HttpGet("callId/{callId}")]
+        [HttpGet("getby/callId/{callId}")]
         public async Task<IActionResult> GetCallByCallId([FromRoute] string callId)
         {
             if (Guid.TryParse(callId, out Guid result))
@@ -80,7 +80,7 @@ namespace CallCenter.Controllers
             }
         }
 
-        [HttpGet("clientId/{clientId}")]
+        [HttpGet("getby/clientId/{clientId}")]
         public async Task<IActionResult> GetCallByCallClientId([FromRoute] string clientId)
         {
             if (Guid.TryParse(clientId, out Guid result))
@@ -97,7 +97,7 @@ namespace CallCenter.Controllers
             }
         }
 
-        [HttpGet("workId/{workId}")]
+        [HttpGet("getby/workId/{workId}")]
         public async Task<IActionResult> GetCallByCallWorkId([FromRoute] string workId)
         {
             if (Guid.TryParse(workId, out Guid result))
