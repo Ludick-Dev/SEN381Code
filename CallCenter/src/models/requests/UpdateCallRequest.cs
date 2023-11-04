@@ -1,5 +1,5 @@
 namespace CallCenter.Models{
-    public class UpdateCallToRequest{
+    public class UpdateCallRequest{
         public Guid CallId {get; set;}
         public Guid? ClientId { get ; set ; }
         public DateTime EndTime {get; set;}

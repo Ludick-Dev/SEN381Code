@@ -18,7 +18,7 @@ namespace CallCenter.Controllers
         }
 
         [HttpPost("add")]
-        public async Task<IActionResult> AddCall([FromBody] AddCallToRequest call)
+        public async Task<IActionResult> AddCall([FromBody] AddCallRequest call)
         {
             if (!ModelState.IsValid)
             {
@@ -40,7 +40,7 @@ namespace CallCenter.Controllers
         }
 
         [HttpPost("update")]
-        public async Task<IActionResult> UpdateCall([FromBody] UpdateCallToRequest call)
+        public async Task<IActionResult> UpdateCall([FromBody] UpdateCallRequest call)
         {
             if (!ModelState.IsValid)
             {
