@@ -88,54 +88,55 @@ namespace CallCenter.Repository
             return await ExecuteWorkRequestQueryAsync("selectAllWorkRequests");
         }
 
-        public async Task GetWorkRequestById(Guid requestId)
+        public async Task<WorkRequest> GetWorkRequestById(Guid requestId)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@requestId", requestId),
             };
 
-            await ExecuteWorkRequestQueryAsync("selectWorkRequestById", parameters);
+            List<WorkRequest> workRequests = await ExecuteWorkRequestQueryAsync("selectWorkRequestById", parameters);
+            return workRequests.First();
         }
 
-        public async Task GetWorkRequestByClientId(Guid clientId)
+        public async Task<List<WorkRequest>> GetWorkRequestByClientId(Guid clientId)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@clientId", clientId),
             };
 
-            await ExecuteWorkRequestQueryAsync("selectWorkRequestById", parameters);
+            return await ExecuteWorkRequestQueryAsync("selectWorkRequestById", parameters);
         }
 
-        public async Task GetWorkRequestByPriority(string priority)
+        public async Task<List<WorkRequest>> GetWorkRequestByPriority(string priority)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@priority", priority),
             };
 
-            await ExecuteWorkRequestQueryAsync("selectWorkRequestBypriority", parameters);
+            return await ExecuteWorkRequestQueryAsync("selectWorkRequestBypriority", parameters);
         }
 
-        public async Task GetWorkRequestByServiceType(string serviceType)
+        public async Task<List<WorkRequest>> GetWorkRequestByServiceType(string serviceType)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@serviceType", serviceType),
             };
 
-            await ExecuteWorkRequestQueryAsync("selectWorkRequestByserviceType", parameters);
+            return await ExecuteWorkRequestQueryAsync("selectWorkRequestByserviceType", parameters);
         }
 
-        public async Task GetWorkRequestByStatus(string status)
+        public async Task<List<WorkRequest>> GetWorkRequestByStatus(string status)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@status", status),
             };
 
-            await ExecuteWorkRequestQueryAsync("selectWorkRequestBystatus", parameters);
+            return await ExecuteWorkRequestQueryAsync("selectWorkRequestBystatus", parameters);
         }
 
     }
