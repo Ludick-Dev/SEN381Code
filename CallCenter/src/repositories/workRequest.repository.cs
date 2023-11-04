@@ -55,7 +55,7 @@ namespace CallCenter.Repository
             }
         }
 
-        public async Task AddCall(WorkRequest workRequest)
+        public async Task AddWorkRequest(WorkRequest workRequest)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
