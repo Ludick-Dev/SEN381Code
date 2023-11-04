@@ -1,9 +1,7 @@
-using CallCenter.Handlers;
 using Microsoft.AspNetCore.Mvc;
 using CallCenter.Services;
 using CallCenter.Models;
 using CallCenter.Repository;
-using CallCenter.Models.Responses;
 using Microsoft.Data.SqlClient;
 
 namespace CallCenter.Controllers
@@ -114,64 +112,5 @@ namespace CallCenter.Controllers
             }
         }
 
-        [HttpPost("AnswerCall")]
-        public async Task<IActionResult> AnswerCall(AddCallRequest call)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequestModelStateResponse.BadRequestModelState(ModelState);
-            }
-
-            Call _call = new Call()
-            {
-                callId = Guid.NewGuid(),
-                clientId = call.ClientId,
-                startTime = call.StartTime,
-                endTime = call.EndTime,
-                employeeId = call.EmployeeId,
-                workId = call.WorkId
-            };
-
-            await _callRepository.AddCall(_call);
-            return Ok();
-        }
-
-
-
-        [HttpGet("ViewCientDetails")]
-        public IActionResult ViewClientDetails()
-        {
-            return CallCenterHandler.ViewClientDetails();
-        }
-
-        [HttpGet("ViewAgreements")]
-        public IActionResult ViewAgreements()
-        {
-            return CallCenterHandler.ViewAgreements();
-        }
-
-        [HttpGet("ViewClientHistory")]
-        public IActionResult ViewClientHistory()
-        {
-            return CallCenterHandler.ViewClientHistory();
-        }
-
-        [HttpPost("LogRequest")]
-        public IActionResult LogRequest()
-        {
-            return CallCenterHandler.LogRequest();
-        }
-
-        [HttpPost("SubmitRequest")]
-        public IActionResult SubmitRequest()
-        {
-            return CallCenterHandler.SubmitRequest();
-        }
-
-        [HttpPost("AddCallToRequest")]
-        public IActionResult AddCallToRequest()
-        {
-            return CallCenterHandler.AddCallToRequest();
-        }
     }
 }
