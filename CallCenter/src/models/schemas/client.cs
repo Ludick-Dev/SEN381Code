@@ -10,8 +10,8 @@ namespace CallCenter.Models
         public ClientTypes clientType { get ; set ; }
         public List<Contract>? contracts { get ; set ; }
         public string clientAddress { get; set; }
-        public DateTime lastCallDate { get; set; }
-        public string clientNotes { get; set; }
+        public DateTime? lastCallDate { get; set; }
+        public string? clientNotes { get; set; }
 
         public Client()
         {

@@ -16,7 +16,6 @@ namespace CallCenter.Controllers
             _callReportRepository = callReportRepository;
         }
 
-
         [HttpPost("add")]
         public async Task<IActionResult> AddCallReport([FromBody] AddCallReportRequest call)
         {
