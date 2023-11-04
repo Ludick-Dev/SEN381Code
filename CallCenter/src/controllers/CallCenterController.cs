@@ -114,9 +114,8 @@ namespace CallCenter.Controllers
             }
         }
 
-
         [HttpPost("AnswerCall")]
-        public async Task<IActionResult> AnswerCall(AddCallToRequest call)
+        public async Task<IActionResult> AnswerCall(AddCallRequest call)
         {
             if (!ModelState.IsValid)
             {
