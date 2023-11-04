@@ -1,13 +1,11 @@
-﻿using System;
-
-namespace CallCenter.Models
+﻿namespace CallCenter.Models
 {
-	public class Login
+    public class Login
 	{
         private int EmployeeID;
         private string username;
         private string password;
-
+        private string department;
         public Login()
         {
 
@@ -16,7 +14,7 @@ namespace CallCenter.Models
         public int EmployeeID1 { get => EmployeeID; set => EmployeeID = value; }
         public string Username { get => username; set => username = value; }
         public string Password { get => password; set => password = value; }
-
+        public string Department { get => department; set => department = value; }
     }
 }
 

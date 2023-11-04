@@ -1,11 +1,9 @@
-﻿using CallCenter.src.types.interfaces;
-using Twilio.Types;
-using Twilio;
+﻿using Twilio.Types;
 using Twilio;
 using Twilio.Rest.Api.V2010.Account;
-using Twilio.Types;
+using CallCenter.Types;
 
-namespace CallCenter.src.services
+namespace CallCenter.Services
 {
     //implements Whatsapp notification services using Twilio API
     public class WhatsappNotificationServices : INotificationStrategy
