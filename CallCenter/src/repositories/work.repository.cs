@@ -53,7 +53,7 @@ namespace CallCenter.Repository
             }
         }
 
-        public async Task AddCall(Work work)
+        public async Task AddWork(Work work)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
