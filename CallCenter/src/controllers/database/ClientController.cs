@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CallCenter.Controllers
 {
-
     [ApiController]
     [Route("/api/client")]
     public class ClientController : ControllerBase

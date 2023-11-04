@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CallCenter.Controllers
 {
+    [ApiController]
+    [Route("/api/contract")]
     public class ContractController : ControllerBase
     {
         private readonly ContractRepository _contractRepository;
