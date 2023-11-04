@@ -1,7 +1,6 @@
 using CallCenter.Models;
 using CallCenter.Models.Responses;
 using CallCenter.Repository;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CallCenter.Controllers

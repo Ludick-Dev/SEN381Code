@@ -143,7 +143,7 @@ namespace CallCenter.Repository
             return await ExecuteTechnicianQueryAsync("selectTechnicianByAvailability", parameters);
         }
 
-        public async Task<List<Technician>> GetTechnicianBycertificationLevel(string certificationLevel)
+        public async Task<List<Technician>> GetTechnicianByCertificationLevel(string certificationLevel)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
