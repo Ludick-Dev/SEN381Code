@@ -68,7 +68,7 @@ namespace CallCenter.Controllers
             {
                 return NotFound();
             }
-            return Ok();
+            return Ok(employees);
         }
 
         [HttpGet("getby/employeeId/{employeeId}")]
@@ -81,7 +81,7 @@ namespace CallCenter.Controllers
                 {
                     return NotFound();
                 }
-                return Ok();
+                return Ok(employee);
             }
             else
             {
@@ -97,7 +97,7 @@ namespace CallCenter.Controllers
                 {
                     return NotFound();
                 }
-                return Ok();
+                return Ok(employee);
         }
 
         [HttpGet("getby/phoneNumber/{phoneNumber}")]
@@ -108,7 +108,7 @@ namespace CallCenter.Controllers
                 {
                     return NotFound();
                 }
-                return Ok();
+                return Ok(employee);
         }
     }
 }

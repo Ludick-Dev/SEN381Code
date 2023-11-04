@@ -70,7 +70,7 @@ namespace CallCenter.Controllers
             {
                 return NotFound();
             }
-            return Ok();
+            return Ok(contracts);
         }
 
         [HttpGet("getby/contractId/{contractId}")]
@@ -83,7 +83,7 @@ namespace CallCenter.Controllers
                 {
                     return NotFound();
                 }
-                return Ok();
+                return Ok(contract);
             }
             else
             {
@@ -101,7 +101,7 @@ namespace CallCenter.Controllers
                 {
                     return NotFound();
                 }
-                return Ok();
+                return Ok(contracts);
             }
             else
             {
@@ -117,7 +117,7 @@ namespace CallCenter.Controllers
             {
                 return NotFound();
             }
-            return Ok();
+            return Ok(contracts);
         }
 
         [HttpGet("getby/contractStatus/{contractStatus}")]
@@ -128,7 +128,7 @@ namespace CallCenter.Controllers
             {
                 return NotFound();
             }
-            return Ok();
+            return Ok(contracts);
         }
     }
 }

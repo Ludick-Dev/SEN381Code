@@ -66,7 +66,7 @@ namespace CallCenter.Controllers
                 {
                     return NotFound();
                 }
-                return Ok();
+                return Ok(callReport);
             }
             else
             {
@@ -82,7 +82,7 @@ namespace CallCenter.Controllers
             {
                 return NotFound();
             }
-            return Ok();
+            return Ok(callReports);
         }
 
     }

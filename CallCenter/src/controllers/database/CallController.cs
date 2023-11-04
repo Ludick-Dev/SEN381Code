@@ -73,7 +73,7 @@ namespace CallCenter.Controllers
                 {
                     return NotFound();
                 }
-                return Ok();
+                return Ok(call);
             }
             else{
                 return BadRequest(new ErrorResponse("Invalid ID format"));
@@ -90,7 +90,7 @@ namespace CallCenter.Controllers
                 {
                     return NotFound();
                 }
-                return Ok();
+                return Ok(calls);
             }
             else{
                 return BadRequest(new ErrorResponse("Invalid ID format"));
@@ -107,7 +107,7 @@ namespace CallCenter.Controllers
                 {
                     return NotFound();
                 }
-                return Ok();
+                return Ok(calls);
             }
             else{
                 return BadRequest(new ErrorResponse("Invalid ID format"));

@@ -91,14 +91,15 @@ namespace CallCenter.Repository
             return await ExecuteTechnicianQueryAsync("selectAllTechnicians");
         }
 
-        public async Task GetTechnicianById(Guid technicianId)
+        public async Task<Technician> GetTechnicianById(Guid technicianId)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@technicianId", technicianId),
             };
 
-            await ExecuteTechnicianQueryAsync("selectTechnicianById", parameters);
+            List<Technician> technicians = await ExecuteTechnicianQueryAsync("selectTechnicianById", parameters);
+            return technicians.First();
         }
 
         public async Task GetTechnicianByEmployeeId(Guid employeeId)
