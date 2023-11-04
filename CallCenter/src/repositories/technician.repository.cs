@@ -91,64 +91,66 @@ namespace CallCenter.Repository
             return await ExecuteTechnicianQueryAsync("selectAllTechnicians");
         }
 
-        public async Task GetTechnicianById(Guid technicianId)
+        public async Task<Technician> GetTechnicianById(Guid technicianId)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@technicianId", technicianId),
             };
 
-            await ExecuteTechnicianQueryAsync("selectTechnicianById", parameters);
+            List<Technician> technicians = await ExecuteTechnicianQueryAsync("selectTechnicianById", parameters);
+            return technicians.First();
         }
 
-        public async Task GetTechnicianByEmployeeId(Guid employeeId)
+        public async Task<Technician> GetTechnicianByEmployeeId(Guid employeeId)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@employeeId", employeeId),
             };
 
-            await ExecuteTechnicianQueryAsync("selectTechnicianByEmployeeId", parameters);
+            List<Technician> technicians = await ExecuteTechnicianQueryAsync("selectTechnicianByEmployeeId", parameters);
+            return technicians.First();
         }
 
-        public async Task GetTechnicianBySkillLevel(int skillLevel)
+        public async Task<List<Technician>> GetTechnicianBySkillLevel(int skillLevel)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@skillLevel", skillLevel),
             };
 
-            await ExecuteTechnicianQueryAsync("selectTechnicianBySkillLevel", parameters);
+            return await ExecuteTechnicianQueryAsync("selectTechnicianBySkillLevel", parameters);
         }
 
-        public async Task GetTechnicianByServiceArea(string serviceArea)
+        public async Task<List<Technician>> GetTechnicianByServiceArea(string serviceArea)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@serviceArea", serviceArea),
             };
 
-            await ExecuteTechnicianQueryAsync("selectTechnicianByServiceArea", parameters);
+            return await ExecuteTechnicianQueryAsync("selectTechnicianByServiceArea", parameters);
         }
 
-        public async Task GetTechnicianByAvailability(string availability)
+        public async Task<List<Technician>> GetTechnicianByAvailability(string availability)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@availability", availability),
             };
 
-            await ExecuteTechnicianQueryAsync("selectTechnicianByAvailability", parameters);
+            return await ExecuteTechnicianQueryAsync("selectTechnicianByAvailability", parameters);
         }
 
-        public async Task GetTechnicianBycertificationLevel(string certificationLevel)
+        public async Task<List<Technician>> GetTechnicianByCertificationLevel(string certificationLevel)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@certificationLevel", certificationLevel),
             };
 
-            await ExecuteTechnicianQueryAsync("selectTechnicianByCertificationLevel", parameters);
+            return await ExecuteTechnicianQueryAsync("selectTechnicianByCertificationLevel", parameters);
         }
 
     }

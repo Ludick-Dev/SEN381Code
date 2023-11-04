@@ -62,7 +62,7 @@ namespace CallCenter.Repository
             {
                 new SqlParameter("@callId", call.callId),
                 new SqlParameter("@clientId", call.clientId),
-                new SqlParameter("@employeeId", call.employeeId),
+                new SqlParameter("@startTime", call.startTime),
                 new SqlParameter("@workId", call.workId),
                 new SqlParameter("@startTime", call.startTime),
                 new SqlParameter("@endTime", call.endTime)
@@ -89,6 +89,18 @@ namespace CallCenter.Repository
         public async Task<List<Call>> GetAllCalls()
         {
             return await ExecuteCallQueryAsync("selectAllCalls");
+        }
+
+        public async Task<Call> SelectCallsById(Guid callId)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@callId", callId)
+            };
+
+            List<Call> calls = await ExecuteCallQueryAsync("selectCallsById", parameters);
+
+            return calls.First();
         }
 
         public async Task<List<Call>> SelectCallsByClientId(Guid clientId)

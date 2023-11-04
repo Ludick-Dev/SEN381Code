@@ -63,19 +63,31 @@ namespace CallCenter.Repository
             await ExecuteCallReportQueryAsync("createNewCallReport", parameters);
         }
 
+        public async Task UpdateCallReport(CallReport callReport)
+        {
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@callReportId", callReport.callReportId),
+                new SqlParameter("@calls", callReport.calls),
+            };
+
+            await ExecuteCallReportQueryAsync("updateCallReport", parameters);
+        }
+
         public async Task<List<CallReport>> GetCallReports()
         {
             return await ExecuteCallReportQueryAsync("getAllCallReports");
         }
 
-        public async Task<List<CallReport>> GetCallReportsByCallReportId(Guid callReportId)
+        public async Task<CallReport> GetCallReportsByCallReportId(Guid callReportId)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@callReportId", callReportId)
             };
 
-            return await ExecuteCallReportQueryAsync("getAllCallReportsById", parameters);
+            List<CallReport> callReports = await ExecuteCallReportQueryAsync("getAllCallReportsById", parameters);
+            return callReports.First();
         }
 
         public async Task<List<CallReport>> GetCallReportsByWorkId(Guid workId)

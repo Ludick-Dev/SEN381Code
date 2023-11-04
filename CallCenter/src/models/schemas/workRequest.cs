@@ -9,6 +9,7 @@ namespace CallCenter.Models
         public string serviceType { get; set; }
         public string priority { get; set; }
         public string status { get; set; }
+        
         public WorkRequest()
         {
 

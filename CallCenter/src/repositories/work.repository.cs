@@ -53,7 +53,7 @@ namespace CallCenter.Repository
             }
         }
 
-        public async Task AddCall(Work work)
+        public async Task AddWork(Work work)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
@@ -82,24 +82,25 @@ namespace CallCenter.Repository
             return await ExecuteWorkQueryAsync("selectAllWorks");
         }
 
-        public async Task GetWorkById(Guid workId)
+        public async Task<Work> GetWorkById(Guid workId)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@workId", workId),
             };
 
-            await ExecuteWorkQueryAsync("selectWorkById", parameters);
+            List<Work> works = await ExecuteWorkQueryAsync("selectWorkById", parameters);
+            return works.First();
         }
 
-        public async Task GetWorkByTechnicianId(Guid technicianId)
+        public async Task<List<Work>> GetWorkByTechnicianId(Guid technicianId)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@technicianId", technicianId),
             };
 
-            await ExecuteWorkQueryAsync("selectWorkById", parameters);
+            return await ExecuteWorkQueryAsync("selectWorkById", parameters);
         }
 
     }

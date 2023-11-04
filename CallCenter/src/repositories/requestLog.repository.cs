@@ -37,10 +37,9 @@ namespace CallCenter.Repository
                             {
                                 requestId = reader.GetGuid(reader.GetOrdinal("requestId")),
                                 clientId = reader.GetGuid(reader.GetOrdinal("clientId")),
-                                clientName = reader.GetString(reader.GetOrdinal("clientName")),
                                 lastCallDate = reader.GetDateTime(reader.GetOrdinal("lastCallDate")),
                                 callDuration = reader.GetDouble(reader.GetOrdinal("callDuration")),
-                                technicianName = reader.GetString(reader.GetOrdinal("technicianName")),
+                                technicianId = reader.GetGuid(reader.GetOrdinal("technicianName")),
                                 priorityLevel = reader.GetString(reader.GetOrdinal("priorityLevel")),
                                 status = reader.GetString(reader.GetOrdinal("status"))
 
@@ -65,10 +64,9 @@ namespace CallCenter.Repository
             {
                 new SqlParameter("@requestId", requestLog.requestId),
                 new SqlParameter("@clientId", requestLog.clientId),
-                new SqlParameter("@clientName", requestLog.clientName),
                 new SqlParameter("@lastCallDate", requestLog.lastCallDate),
                 new SqlParameter("@callDuration", requestLog.callDuration),
-                new SqlParameter("@technicianName", requestLog.technicianName),
+                new SqlParameter("@technicianId", requestLog.technicianId),
                 new SqlParameter("@priorityLevel", requestLog.priorityLevel),
                 new SqlParameter("@status", requestLog.status),
             };
@@ -82,10 +80,9 @@ namespace CallCenter.Repository
             {
                 new SqlParameter("@requestId", requestLog.requestId),
                 new SqlParameter("@clientId", requestLog.clientId),
-                new SqlParameter("@clientName", requestLog.clientName),
                 new SqlParameter("@lastCallDate", requestLog.lastCallDate),
                 new SqlParameter("@callDuration", requestLog.callDuration),
-                new SqlParameter("@technicianName", requestLog.technicianName),
+                new SqlParameter("@technicianId", requestLog.technicianId),
                 new SqlParameter("@priorityLevel", requestLog.priorityLevel),
                 new SqlParameter("@status", requestLog.status),
             };
@@ -98,54 +95,55 @@ namespace CallCenter.Repository
             return await ExecuteRequestLogQueryAsync("selectAllRequestLogs");
         }
 
-        public async Task GetRequestLogById(Guid requestId)
+        public async Task<RequestLog> GetRequestLogById(Guid requestId)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@requestId", requestId),
             };
 
-            await ExecuteRequestLogQueryAsync("selectRequestLogById", parameters);
+            List<RequestLog> requestLogs = await ExecuteRequestLogQueryAsync("selectRequestLogById", parameters);
+            return requestLogs.First();
         }
 
-        public async Task GetRequestLogByClinetId(Guid clientId)
+        public async Task<List<RequestLog>> GetRequestLogByClientId(Guid clientId)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@clientId", clientId),
             };
 
-            await ExecuteRequestLogQueryAsync("selectRequestLogByClientId", parameters);
+            return await ExecuteRequestLogQueryAsync("selectRequestLogByClientId", parameters);        
         }
 
-        public async Task GetRequestLogByClientName(string clientName)
+        public async Task<List<RequestLog>> GetRequestLogByTechnicianId(Guid technicianId)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
-                new SqlParameter("@clientName", clientName),
+                new SqlParameter("@technicianId", technicianId),
             };
 
-            await ExecuteRequestLogQueryAsync("selectRequestLogByClientName", parameters);
+            return await ExecuteRequestLogQueryAsync("selectRequestLogByTechnicianName", parameters);
         }
 
-        public async Task GetRequestLogByTechnicianName(string technicianName)
+        public async Task<List<RequestLog>> GetRequestLogtByPriority(string priorityLevel)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
-                new SqlParameter("@technicianName", technicianName),
+                new SqlParameter("@status", priorityLevel),
             };
 
-            await ExecuteRequestLogQueryAsync("selectRequestLogByTechnicianName", parameters);
+            return await ExecuteRequestLogQueryAsync("selecRequestLogByPriority", parameters);
         }
 
-        public async Task GetRequestLogtByStatus(string status)
+        public async Task<List<RequestLog>> GetRequestLogtByStatus(string status)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@status", status),
             };
 
-            await ExecuteRequestLogQueryAsync("selecRequestLogByStatus", parameters);
+            return await ExecuteRequestLogQueryAsync("selecRequestLogByStatus", parameters);
         }
 
     }

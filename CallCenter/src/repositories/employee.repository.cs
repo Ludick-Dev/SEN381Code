@@ -90,34 +90,37 @@ namespace CallCenter.Repository
             return await ExecuteEmployeeQueryAsync("selectAllEmployees");
         }
 
-        public async Task GetEmployeeById(Guid employeeId)
+        public async Task<Employee> GetEmployeeById(Guid employeeId)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@employeeId", employeeId),
             };
 
-            await ExecuteEmployeeQueryAsync("selectEmployeeById", parameters);
+            List<Employee> employees = await ExecuteEmployeeQueryAsync("selectEmployeeById", parameters);
+            return employees.First();
         }
 
-        public async Task GetEmployeeByName(string employeeName)
+        public async Task<Employee> GetEmployeeByName(string employeeName)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@employeeName", employeeName),
             };
 
-            await ExecuteEmployeeQueryAsync("selectEmployeeByName", parameters);
+            List<Employee> employees = await ExecuteEmployeeQueryAsync("selectEmployeeByName", parameters);
+            return employees.First();
         }
 
-        public async Task GetEmployeeByPhoneNumber(string phoneNumber)
+        public async Task<Employee> GetEmployeeByPhoneNumber(string phoneNumber)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@phoneNumber", phoneNumber),
             };
 
-            await ExecuteEmployeeQueryAsync("selectClientByPhone", parameters);
+            List<Employee> employees = await ExecuteEmployeeQueryAsync("selectClientByPhone", parameters);
+            return employees.First();
         }
 
     }

@@ -59,7 +59,7 @@ namespace CallCenter.Repository
             }
         }
 
-        public async Task AddCall(Client client)
+        public async Task AddClient(Client client)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
@@ -96,34 +96,36 @@ namespace CallCenter.Repository
             return await ExecuteClientQueryAsync("selectAllClients");
         }
 
-        public async Task GetClientById(Guid clientId)
+        public async Task<Client> GetClientById(Guid clientId)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@clientId", clientId),
             };
 
-            await ExecuteClientQueryAsync("selectClientById", parameters);
+            List<Client> clients = await ExecuteClientQueryAsync("selectClientById", parameters);
+            return clients.First();
         }
 
-        public async Task GetClientByName(string clientName)
+        public async Task<List<Client>> GetClientByName(string clientName)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@clientName", clientName),
             };
 
-            await ExecuteClientQueryAsync("selectClientByName", parameters);
+            return await ExecuteClientQueryAsync("selectClientByName", parameters);
         }
 
-        public async Task GetClientByPhoneNumber(string phoneNumber)
+        public async Task<Client> GetClientByPhoneNumber(string phoneNumber)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@phoneNumber", phoneNumber),
             };
 
-            await ExecuteClientQueryAsync("selectClientByPhone", parameters);
+            List<Client> clients = await ExecuteClientQueryAsync("selectClientByPhone", parameters);
+            return clients.First();
         }
 
     }
