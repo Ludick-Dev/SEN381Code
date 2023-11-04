@@ -79,30 +79,7 @@ namespace CallCenter.Controllers
                 return NotFound();
             }
 
-            List<HydratedRequestLogResponse> hydratedResponses = new List<HydratedRequestLogResponse>();
-
-            // TODO: This is going to be very slow on larger datasets, FIX
-            foreach (var requestLog in requestLogs)
-            {
-                Technician technician = await _technicianRepository.GetTechnicianById(requestLog.technicianId);
-                Employee employee = await _employeeRepository.GetEmployeeById(technician.employeeId);
-                Client client = await _clientRepository.GetClientById(requestLog.clientId);
-
-                HydratedRequestLogResponse hydratedRequestLogResponse = new HydratedRequestLogResponse()
-                {
-                    requestId = requestLog.requestId,
-                    clientName = client.clientName,
-                    clientPhoneNumber = client.phoneNumber,
-                    lastCallDate = requestLog.lastCallDate,
-                    callDuration = requestLog.callDuration,
-                    employeeName = employee.employeeName,
-                    department = employee.department,
-                    priorityLevel = requestLog.priorityLevel,
-                    status = requestLog.status
-                };
-
-                hydratedResponses.Add(hydratedRequestLogResponse);
-            }
+            List<HydratedRequestLogResponse> hydratedResponses = await HydratedRequestLogs(requestLogs);
 
             return Ok(hydratedResponses);
         }
@@ -119,22 +96,7 @@ namespace CallCenter.Controllers
                     return NotFound();
                 }
 
-                Technician technician = await _technicianRepository.GetTechnicianById(requestLog.technicianId);
-                Employee employee = await _employeeRepository.GetEmployeeById(technician.employeeId);
-                Client client = await _clientRepository.GetClientById(requestLog.clientId);
-
-                HydratedRequestLogResponse hydratedRequestLogResponse = new HydratedRequestLogResponse()
-                {
-                    requestId = requestLog.requestId,
-                    clientName = client.clientName,
-                    clientPhoneNumber = client.phoneNumber,
-                    lastCallDate = requestLog.lastCallDate,
-                    callDuration = requestLog.callDuration,
-                    employeeName = employee.employeeName,
-                    department = employee.department,
-                    priorityLevel = requestLog.priorityLevel,
-                    status = requestLog.status
-                };
+                HydratedRequestLogResponse hydratedRequestLogResponse = await HydratedRequestLog(requestLog);
 
                 return Ok(hydratedRequestLogResponse);
             }
@@ -155,30 +117,7 @@ namespace CallCenter.Controllers
                     return NotFound();
                 }
 
-                List<HydratedRequestLogResponse> hydratedResponses = new List<HydratedRequestLogResponse>();
-
-                // TODO: This is going to be very slow on larger datasets, FIX
-                foreach (var requestLog in requestLogs)
-                {
-                    Technician technician = await _technicianRepository.GetTechnicianById(requestLog.technicianId);
-                    Employee employee = await _employeeRepository.GetEmployeeById(technician.employeeId);
-                    Client client = await _clientRepository.GetClientById(requestLog.clientId);
-
-                    HydratedRequestLogResponse hydratedRequestLogResponse = new HydratedRequestLogResponse()
-                    {
-                        requestId = requestLog.requestId,
-                        clientName = client.clientName,
-                        clientPhoneNumber = client.phoneNumber,
-                        lastCallDate = requestLog.lastCallDate,
-                        callDuration = requestLog.callDuration,
-                        employeeName = employee.employeeName,
-                        department = employee.department,
-                        priorityLevel = requestLog.priorityLevel,
-                        status = requestLog.status
-                    };
-
-                    hydratedResponses.Add(hydratedRequestLogResponse);
-                }
+                List<HydratedRequestLogResponse> hydratedResponses = await HydratedRequestLogs(requestLogs);
 
                 return Ok(hydratedResponses);
             }
@@ -199,30 +138,7 @@ namespace CallCenter.Controllers
                     return NotFound();
                 }
 
-                List<HydratedRequestLogResponse> hydratedResponses = new List<HydratedRequestLogResponse>();
-
-                // TODO: This is going to be very slow on larger datasets, FIX
-                foreach (var requestLog in requestLogs)
-                {
-                    Technician technician = await _technicianRepository.GetTechnicianById(requestLog.technicianId);
-                    Employee employee = await _employeeRepository.GetEmployeeById(technician.employeeId);
-                    Client client = await _clientRepository.GetClientById(requestLog.clientId);
-
-                    HydratedRequestLogResponse hydratedRequestLogResponse = new HydratedRequestLogResponse()
-                    {
-                        requestId = requestLog.requestId,
-                        clientName = client.clientName,
-                        clientPhoneNumber = client.phoneNumber,
-                        lastCallDate = requestLog.lastCallDate,
-                        callDuration = requestLog.callDuration,
-                        employeeName = employee.employeeName,
-                        department = employee.department,
-                        priorityLevel = requestLog.priorityLevel,
-                        status = requestLog.status
-                    };
-
-                    hydratedResponses.Add(hydratedRequestLogResponse);
-                }
+                List<HydratedRequestLogResponse> hydratedResponses = await HydratedRequestLogs(requestLogs);
 
                 return Ok(hydratedResponses);
             }
@@ -242,30 +158,7 @@ namespace CallCenter.Controllers
                 return NotFound();
             }
 
-            List<HydratedRequestLogResponse> hydratedResponses = new List<HydratedRequestLogResponse>();
-
-            // TODO: This is going to be very slow on larger datasets, FIX
-            foreach (var requestLog in requestLogs)
-            {
-                Technician technician = await _technicianRepository.GetTechnicianById(requestLog.technicianId);
-                Employee employee = await _employeeRepository.GetEmployeeById(technician.employeeId);
-                Client client = await _clientRepository.GetClientById(requestLog.clientId);
-
-                HydratedRequestLogResponse hydratedRequestLogResponse = new HydratedRequestLogResponse()
-                {
-                    requestId = requestLog.requestId,
-                    clientName = client.clientName,
-                    clientPhoneNumber = client.phoneNumber,
-                    lastCallDate = requestLog.lastCallDate,
-                    callDuration = requestLog.callDuration,
-                    employeeName = employee.employeeName,
-                    department = employee.department,
-                    priorityLevel = requestLog.priorityLevel,
-                    status = requestLog.status
-                };
-
-                hydratedResponses.Add(hydratedRequestLogResponse);
-            }
+            List<HydratedRequestLogResponse> hydratedResponses = await HydratedRequestLogs(requestLogs);
 
             return Ok(hydratedResponses);
 
@@ -280,32 +173,46 @@ namespace CallCenter.Controllers
                 return NotFound();
             }
 
+            List<HydratedRequestLogResponse> hydratedResponses = await HydratedRequestLogs(requestLogs);
+
+            return Ok(hydratedResponses);
+        }
+
+        private async Task<List<HydratedRequestLogResponse>> HydratedRequestLogs(List<RequestLog> requestLogs)
+        {
             List<HydratedRequestLogResponse> hydratedResponses = new List<HydratedRequestLogResponse>();
 
             // TODO: This is going to be very slow on larger datasets, FIX
             foreach (var requestLog in requestLogs)
             {
-                Technician technician = await _technicianRepository.GetTechnicianById(requestLog.technicianId);
-                Employee employee = await _employeeRepository.GetEmployeeById(technician.employeeId);
-                Client client = await _clientRepository.GetClientById(requestLog.clientId);
-
-                HydratedRequestLogResponse hydratedRequestLogResponse = new HydratedRequestLogResponse()
-                {
-                    requestId = requestLog.requestId,
-                    clientName = client.clientName,
-                    clientPhoneNumber = client.phoneNumber,
-                    lastCallDate = requestLog.lastCallDate,
-                    callDuration = requestLog.callDuration,
-                    employeeName = employee.employeeName,
-                    department = employee.department,
-                    priorityLevel = requestLog.priorityLevel,
-                    status = requestLog.status
-                };
+                HydratedRequestLogResponse hydratedRequestLogResponse = await HydratedRequestLog(requestLog);
 
                 hydratedResponses.Add(hydratedRequestLogResponse);
             }
 
-            return Ok(hydratedResponses);
+            return hydratedResponses;
+        }
+
+        private async Task<HydratedRequestLogResponse> HydratedRequestLog(RequestLog requestLog)
+        {
+            Technician technician = await _technicianRepository.GetTechnicianById(requestLog.technicianId);
+            Employee employee = await _employeeRepository.GetEmployeeById(technician.employeeId);
+            Client client = await _clientRepository.GetClientById(requestLog.clientId);
+
+            HydratedRequestLogResponse hydratedRequestLogResponse = new HydratedRequestLogResponse()
+            {
+                requestId = requestLog.requestId,
+                clientName = client.clientName,
+                clientPhoneNumber = client.phoneNumber,
+                lastCallDate = requestLog.lastCallDate,
+                callDuration = requestLog.callDuration,
+                employeeName = employee.employeeName,
+                department = employee.department,
+                priorityLevel = requestLog.priorityLevel,
+                status = requestLog.status
+            };
+
+            return hydratedRequestLogResponse;
         }
 
     }
