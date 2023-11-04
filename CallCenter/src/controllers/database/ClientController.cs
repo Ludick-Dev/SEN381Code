@@ -17,7 +17,6 @@ namespace CallCenter.Controllers
             _clientRepository = clientRepository;
         }
 
-
         [HttpPost("add")]
         public async Task<IActionResult> AddClient([FromBody] AddClientRequest client)
         {
@@ -34,8 +33,8 @@ namespace CallCenter.Controllers
                 clientType = client.clientType,
                 contracts = client.contracts,
                 clientAddress = client.clientAddress,
-                lastCallDate = null,
-                clientNotes = null,
+                lastCallDate = client.lastCallDate ?? null,
+                clientNotes = client.clientNotes ?? null,
             };
 
             await _clientRepository.AddClient(newClient);
@@ -55,13 +54,13 @@ namespace CallCenter.Controllers
             Client newClient = new Client()
             {
                 clientId = existingClient.clientId,
-                clientName = client.clientName,
-                phoneNumber = client.phoneNumber,
-                clientType = (Types.ClientTypes)client.clientType,
-                contracts = client.contracts,
-                clientAddress = client.clientAddress,
-                lastCallDate = null,
-                clientNotes = null,
+                clientName = client.clientName ?? existingClient.clientName,
+                phoneNumber = client.phoneNumber ?? existingClient.phoneNumber,
+                clientType = client.clientType ?? existingClient.clientType,
+                contracts = client.contracts ?? existingClient.contracts,
+                clientAddress = client.clientAddress ?? existingClient.clientAddress,
+                lastCallDate = client.lastCallDate ?? existingClient.lastCallDate,
+                clientNotes = client.clientNotes ?? existingClient.clientNotes,
             };
 
             await _clientRepository.UpdateClient(newClient);

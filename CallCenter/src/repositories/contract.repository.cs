@@ -73,7 +73,7 @@ namespace CallCenter.Repository
             await ExecuteContractQueryAsync("createContract", parameters);
         }
 
-        public async Task UpdateClient(Contract contract)
+        public async Task UpdateContract(Contract contract)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
@@ -87,45 +87,49 @@ namespace CallCenter.Repository
 
             await ExecuteContractQueryAsync("updateContract", parameters);
         }
+        public async Task<List<Contract>> GetAllContracts()
+        {
+            return await ExecuteContractQueryAsync("selectAllContracts");
+        }
 
-        public async Task GetContractById(Guid contractId)
+        public async Task<Contract> GetContractById(Guid contractId)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@contractId", contractId),
             };
 
-            await ExecuteContractQueryAsync("selectContractById", parameters);
+            List<Contract> contracts = await ExecuteContractQueryAsync("selectContractById", parameters);
+            return contracts.First();
         }
 
-        public async Task GetContractByClientId(Guid clientId)
+        public async Task<List<Contract>> GetContractByClientId(Guid clientId)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@clientId", clientId),
             };
-
-            await ExecuteContractQueryAsync("selectContractByClientId", parameters);
+            return await ExecuteContractQueryAsync("selectContractByClientId", parameters);
         }
 
-        public async Task GetContractByServiceLevel(int serviceLevel)
+        public async Task<List<Contract>> GetContractByServiceLevel(int serviceLevel)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@serviceLevel", serviceLevel),
             };
 
-            await ExecuteContractQueryAsync("selectContractByServiceLevel", parameters);
+            return await ExecuteContractQueryAsync("selectContractByServiceLevel", parameters);
         }
 
-        public async Task GetContractByStatus(string contractStatus)
+        public async Task<List<Contract>> GetContractByStatus(string contractStatus)
         {
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@contractStatus", contractStatus),
             };
 
-            await ExecuteContractQueryAsync("selectContractByContractStatus", parameters);
+            return await ExecuteContractQueryAsync("selectContractByContractStatus", parameters);
         }
 
     }
